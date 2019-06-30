@@ -4,15 +4,19 @@
 
 #include <QtSql/QSqlDatabase>
 #include <QDebug>
+#include <QCoreApplication>
+#include <QString>
 
 
+#include "mysqldbhelp.h"
 
 bool initMySQLDB()
 {
-    qDebug() << "Available drivers:";
-    QStringList drivers = QSqlDatabase::drivers();
-    foreach(QString driver, drivers)
-       qDebug() << driver;
+    MysqlDBHelp  help ;
+    help.testMysqlAvailabe()  ;
+    help.initTables()  ;
+
+
 
 
     return  true ;

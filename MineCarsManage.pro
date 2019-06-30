@@ -5,6 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+QT       += sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -24,14 +25,18 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 CONFIG += c++11
 
+
+
 SOURCES += \
         carsclassdialog.cpp \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+        mysqldbhelp.cpp
 
 HEADERS += \
         carsclassdialog.h \
-        mainwindow.h
+        mainwindow.h \
+        mysqldbhelp.h
 
 FORMS += \
         carsclassdialog.ui \
