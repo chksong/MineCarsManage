@@ -17,13 +17,13 @@ CarsClassDialog::CarsClassDialog(QWidget *parent) :
     model = new QSqlTableModel(this);
     model->setTable("tb_carsclass");
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
-    model->setHeaderData(0, Qt::Horizontal, "ID");
-    model->setHeaderData(1, Qt::Horizontal, QString::fromLocal8Bit("挖掘机型号"));
+  //  model->setHeaderData(0, Qt::Horizontal, "ID");
+    model->setHeaderData(1, Qt::Horizontal, QStringLiteral("挖掘机型号"));
     model->select(); //选取整个表的所有行
 
     ui->tableView->setModel(model);
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); //使其不可编辑
-//    ui->tableView->setColumnHidden(0, true);
+    ui->tableView->setColumnHidden(0, true);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
 
 }
@@ -61,6 +61,7 @@ void CarsClassDialog::on_pushButton_clicked()
     int rowNum = model->rowCount(); //获得表的行数
     model->insertRow(rowNum); //添加一行
     model->setData(model->index(rowNum, 1), strCarClass);
+  //  model->setData(model->index(rowNum,0),rowNum);
+    bool ret = model->submitAll() ;
 
-    model->submitAll() ;
 }
