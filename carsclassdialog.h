@@ -21,6 +21,7 @@ public:
 
 private slots:
     void on_pushButton_clicked();
+    void clicked_rightMenu(const QPoint &pos);  //tableview 右键信号槽函数
 
 private:
     Ui::CarsClassDialog *ui;

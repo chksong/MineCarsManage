@@ -4,7 +4,8 @@
 
 #include <QSqlTableModel>
 #include <QMessageBox>
-
+#include <QAction>
+#include <QMenu>
 
 CarsClassDialog::CarsClassDialog(QWidget *parent) :
     QDialog(parent),
@@ -22,10 +23,14 @@ CarsClassDialog::CarsClassDialog(QWidget *parent) :
     model->select(); //选取整个表的所有行
 
     ui->tableView->setModel(model);
-    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); //使其不可编辑
+  //  ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); //使其不可编辑
     ui->tableView->setColumnHidden(0, true);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
 
+
+   // 添加右键
+    ui->tableView->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(ui->tableView, &QTableView::customContextMenuRequested,this,&CarsClassDialog::clicked_rightMenu)  ;
 }
 
 CarsClassDialog::~CarsClassDialog()
@@ -61,7 +66,25 @@ void CarsClassDialog::on_pushButton_clicked()
     int rowNum = model->rowCount(); //获得表的行数
     model->insertRow(rowNum); //添加一行
     model->setData(model->index(rowNum, 1), strCarClass);
-  //  model->setData(model->index(rowNum,0),rowNum);
-    bool ret = model->submitAll() ;
+    bool ret = model->submitAll()  ;
+}
+
+
+void CarsClassDialog::clicked_rightMenu(const QPoint &pos)
+{
+
+    QMenu *rightMenu = new QMenu() ;
+    QAction* cutAction = new QAction(QStringLiteral("剪切"),this);
+    QAction* copyAction = new QAction(QStringLiteral("复制"),this);
+    QAction* pasteAction = new QAction(QStringLiteral("粘贴"),this);
+    QAction* deleteAction = new QAction(QStringLiteral("删除"),this);
+
+    rightMenu->addAction(cutAction);
+    rightMenu->addAction(copyAction);
+    rightMenu->addAction(pasteAction);
+    rightMenu->addAction(deleteAction);
+    rightMenu->exec(QCursor::pos());
+
+
 
 }
