@@ -48,10 +48,10 @@ bool MysqlDBHelp::initTables()
 {
     //1 车的类型的表格
     QString sqlcarclass =" CREATE TABLE IF NOT EXISTS `tb_carsclass` (  \
-                `id` int(11) NOT NULL,  \
-                `name` varchar(255) DEFAULT NULL,  \
+               `id` int(11) NOT NULL AUTO_INCREMENT,  \
+               `name` varchar(255) DEFAULT NULL,  \
                 PRIMARY KEY (`id`)    \
-              ) ENGINE=InnoDB DEFAULT CHARSET=latin1; " ;
+              ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8; " ;
 
     QSqlQuery query(_db);
     auto ret_carClass = query.exec(sqlcarclass) ;
