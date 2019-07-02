@@ -32,6 +32,7 @@
     <property name="title">
      <string>日常管理</string>
     </property>
+    <addaction name="actionAddOneDay"/>
    </widget>
    <widget class="QMenu" name="menu_3">
     <property name="title">
@@ -77,6 +78,11 @@
   <action name="actionCarsManag">
    <property name="text">
     <string>车辆管理</string>
+   </property>
+  </action>
+  <action name="actionAddOneDay">
+   <property name="text">
+    <string>添加每日工作</string>
    </property>
   </action>
  </widget>

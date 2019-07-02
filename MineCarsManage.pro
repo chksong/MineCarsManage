@@ -28,17 +28,20 @@ CONFIG += c++11
 
 
 SOURCES += \
+        adddayworkdialog.cpp \
         carsclassdialog.cpp \
         main.cpp \
         mainwindow.cpp \
         mysqldbhelp.cpp
 
 HEADERS += \
+        adddayworkdialog.h \
         carsclassdialog.h \
         mainwindow.h \
         mysqldbhelp.h
 
 FORMS += \
+        adddayworkdialog.ui \
         carsclassdialog.ui \
         mainwindow.ui
 

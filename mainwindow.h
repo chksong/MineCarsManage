@@ -1,9 +1,11 @@
-#ifndef MAINWINDOW_H
+﻿#ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
 #include <QMainWindow>
 
 
+#include "carsclassdialog.h"
+#include "adddayworkdialog.h"
 
 
 namespace Ui {
@@ -20,11 +22,14 @@ public:
 
 public slots:
     void carsClassManage(bool) ;
+    void addOneDayWork(bool)  ;
 
 private:
     Ui::MainWindow *ui;
 
 private:
+    CarsClassDialog *dlgCarsClass  {nullptr} ;
+    AddDayWorkDialog*  dlgAddDayWorkDlg  {nullptr} ;
 
 };
 

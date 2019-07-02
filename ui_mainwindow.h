@@ -28,6 +28,7 @@ public:
     QAction *actiondriver;
     QAction *actionCarsClass;
     QAction *actionCarsManag;
+    QAction *actionAddOneDay;
     QWidget *centralWidget;
     QMenuBar *menuBar;
     QMenu *menu;
@@ -50,6 +51,8 @@ public:
         actionCarsClass->setObjectName(QString::fromUtf8("actionCarsClass"));
         actionCarsManag = new QAction(MainWindow);
         actionCarsManag->setObjectName(QString::fromUtf8("actionCarsManag"));
+        actionAddOneDay = new QAction(MainWindow);
+        actionAddOneDay->setObjectName(QString::fromUtf8("actionAddOneDay"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         MainWindow->setCentralWidget(centralWidget);
@@ -76,6 +79,7 @@ public:
         menuBar->addAction(menu_2->menuAction());
         menuBar->addAction(menu_3->menuAction());
         menuBar->addAction(menu_4->menuAction());
+        menu_2->addAction(actionAddOneDay);
         menu_3->addAction(actionCarsClass);
         menu_3->addAction(actionCarsManag);
 
@@ -91,6 +95,7 @@ public:
         actiondriver->setText(QApplication::translate("MainWindow", "\345\217\270\346\234\272\347\256\241\347\220\206", nullptr));
         actionCarsClass->setText(QApplication::translate("MainWindow", "\347\261\273\345\236\213\347\256\241\347\220\206", nullptr));
         actionCarsManag->setText(QApplication::translate("MainWindow", "\350\275\246\350\276\206\347\256\241\347\220\206", nullptr));
+        actionAddOneDay->setText(QApplication::translate("MainWindow", "\346\267\273\345\212\240\346\257\217\346\227\245\345\267\245\344\275\234", nullptr));
         menu->setTitle(QApplication::translate("MainWindow", "\347\256\241\347\220\206", nullptr));
         menu_2->setTitle(QApplication::translate("MainWindow", "\346\227\245\345\270\270\347\256\241\347\220\206", nullptr));
         menu_3->setTitle(QApplication::translate("MainWindow", "\350\275\246\350\276\206\347\256\241\347\220\206", nullptr));
