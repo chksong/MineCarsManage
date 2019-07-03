@@ -11,9 +11,9 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>挖掘机每日工作录入</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_5">
+  <layout class="QVBoxLayout" name="verticalLayout_5" stretch="3,5,2,4,0">
    <item>
     <widget class="QGroupBox" name="groupBox_2">
      <property name="title">
@@ -44,7 +44,7 @@
           <item>
            <widget class="QLabel" name="label">
             <property name="text">
-             <string>员工信息</string>
+             <string>员工信息：</string>
             </property>
            </widget>
           </item>
@@ -65,7 +65,7 @@
           <item>
            <widget class="QLabel" name="label_2">
             <property name="text">
-             <string>车号:</string>
+             <string>车号：</string>
             </property>
            </widget>
           </item>
@@ -110,16 +110,20 @@
          <number>31</number>
         </property>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_20">
+         <layout class="QHBoxLayout" name="horizontalLayout_20" stretch="3,7">
           <item>
            <widget class="QLabel" name="label_13">
             <property name="text">
-             <string>月初小时数:</string>
+             <string>月初小时数：</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_4"/>
+           <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
+            <property name="decimals">
+             <number>1</number>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -164,11 +168,11 @@
          <number>31</number>
         </property>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="1,1">
+         <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="3,7">
           <item>
            <widget class="QLabel" name="label_5">
             <property name="text">
-             <string>工作地点</string>
+             <string>工作地点：</string>
             </property>
            </widget>
           </item>
@@ -178,11 +182,11 @@
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="0,0">
+         <layout class="QHBoxLayout" name="horizontalLayout_8" stretch="3,7">
           <item>
            <widget class="QLabel" name="label_6">
             <property name="text">
-             <string>工作类型</string>
+             <string>工作类型：</string>
             </property>
            </widget>
           </item>
@@ -203,7 +207,7 @@
          <number>31</number>
         </property>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_11">
+         <layout class="QHBoxLayout" name="horizontalLayout_11" stretch="3,7">
           <item>
            <widget class="QLabel" name="label_7">
             <property name="text">
@@ -217,7 +221,7 @@
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_10">
+         <layout class="QHBoxLayout" name="horizontalLayout_10" stretch="3,7">
           <item>
            <widget class="QLabel" name="label_8">
             <property name="text">
@@ -226,19 +230,19 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_2"/>
+           <widget class="QDoubleSpinBox" name="doubleSpinBox_2"/>
           </item>
          </layout>
         </item>
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_13">
+       <layout class="QHBoxLayout" name="horizontalLayout_13" stretch="1,1">
         <property name="spacing">
          <number>31</number>
         </property>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_14">
+         <layout class="QHBoxLayout" name="horizontalLayout_14" stretch="3,7">
           <item>
            <widget class="QLabel" name="label_9">
             <property name="text">
@@ -252,7 +256,7 @@
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_15">
+         <layout class="QHBoxLayout" name="horizontalLayout_15" stretch="3,7">
           <item>
            <widget class="QLabel" name="label_10">
             <property name="text">
@@ -261,19 +265,19 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_4"/>
+           <widget class="QDoubleSpinBox" name="doubleSpinBox_4"/>
           </item>
          </layout>
         </item>
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_16">
+       <layout class="QHBoxLayout" name="horizontalLayout_16" stretch="1,1">
         <property name="spacing">
          <number>31</number>
         </property>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_17">
+         <layout class="QHBoxLayout" name="horizontalLayout_17" stretch="3,7">
           <item>
            <widget class="QLabel" name="label_11">
             <property name="text">
@@ -287,7 +291,7 @@
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_18">
+         <layout class="QHBoxLayout" name="horizontalLayout_18" stretch="3,7">
           <item>
            <widget class="QLabel" name="label_12">
             <property name="text">
@@ -296,19 +300,19 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_6"/>
+           <widget class="QDoubleSpinBox" name="doubleSpinBox_6"/>
           </item>
          </layout>
         </item>
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_23">
+       <layout class="QHBoxLayout" name="horizontalLayout_23" stretch="1,1">
         <property name="spacing">
          <number>31</number>
         </property>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_24">
+         <layout class="QHBoxLayout" name="horizontalLayout_24" stretch="3,7">
           <item>
            <widget class="QLabel" name="label_15">
             <property name="text">
@@ -322,7 +326,7 @@
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_25">
+         <layout class="QHBoxLayout" name="horizontalLayout_25" stretch="3,7">
           <item>
            <widget class="QLabel" name="label_16">
             <property name="text">
@@ -331,7 +335,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_8"/>
+           <widget class="QDoubleSpinBox" name="doubleSpinBox_8"/>
           </item>
          </layout>
         </item>
@@ -352,11 +356,11 @@
          <number>31</number>
         </property>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_26">
+         <layout class="QHBoxLayout" name="horizontalLayout_26" stretch="3,7">
           <item>
            <widget class="QLabel" name="label_17">
             <property name="text">
-             <string>工作地点</string>
+             <string>工作地点：</string>
             </property>
            </widget>
           </item>
@@ -370,11 +374,11 @@
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_27">
+         <layout class="QHBoxLayout" name="horizontalLayout_27" stretch="3,7">
           <item>
            <widget class="QLabel" name="label_18">
             <property name="text">
-             <string>工作类型</string>
+             <string>工作类型：</string>
             </property>
            </widget>
           </item>
@@ -391,16 +395,16 @@
          <number>31</number>
         </property>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_30" stretch="1,1">
+         <layout class="QHBoxLayout" name="horizontalLayout_30" stretch="3,7">
           <item>
            <widget class="QLabel" name="label_19">
             <property name="text">
-             <string>工时数</string>
+             <string>工时数：</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_3"/>
+           <widget class="QDoubleSpinBox" name="doubleSpinBox_3"/>
           </item>
          </layout>
         </item>
@@ -422,7 +426,7 @@
           <item>
            <widget class="QLabel" name="label_24">
             <property name="text">
-             <string>0</string>
+             <string/>
             </property>
            </widget>
           </item>
@@ -438,49 +442,57 @@
      <property name="title">
       <string>总结信息</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_4" stretch="1,1,1">
+     <layout class="QVBoxLayout" name="verticalLayout_4">
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_33">
+       <layout class="QHBoxLayout" name="horizontalLayout_33" stretch="1,1">
         <property name="spacing">
          <number>31</number>
         </property>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_19">
+         <layout class="QHBoxLayout" name="horizontalLayout_19" stretch="3,7">
           <item>
            <widget class="QLabel" name="label_20">
             <property name="text">
-             <string>本日工作时长:</string>
+             <string>日工作时长：</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_9"/>
+           <widget class="QDoubleSpinBox" name="doubleSpinBox_9">
+            <property name="decimals">
+             <number>1</number>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_32">
+         <layout class="QHBoxLayout" name="horizontalLayout_32" stretch="3,7">
           <item>
            <widget class="QLabel" name="label_21">
             <property name="text">
-             <string>柴油用量:</string>
+             <string>柴油用量：</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_10"/>
+           <widget class="QDoubleSpinBox" name="doubleSpinBox_10">
+            <property name="suffix">
+             <string> 升</string>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_36">
+       <layout class="QHBoxLayout" name="horizontalLayout_36" stretch="1,1">
         <property name="spacing">
          <number>31</number>
         </property>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_34">
+         <layout class="QHBoxLayout" name="horizontalLayout_34" stretch="3,7">
           <item>
            <widget class="QLabel" name="label_22">
             <property name="text">
@@ -498,11 +510,11 @@
          </layout>
         </item>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_35">
+         <layout class="QHBoxLayout" name="horizontalLayout_35" stretch="3,7">
           <item>
            <widget class="QLabel" name="label_23">
             <property name="text">
-             <string>修理费:</string>
+             <string>修理费：</string>
             </property>
            </widget>
           </item>
@@ -518,7 +530,11 @@
        </layout>
       </item>
       <item>
-       <widget class="QTextEdit" name="textEdit"/>
+       <widget class="QTextEdit" name="textEdit">
+        <property name="placeholderText">
+         <string>请输出备注</string>
+        </property>
+       </widget>
       </item>
      </layout>
     </widget>
