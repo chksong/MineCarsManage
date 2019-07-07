@@ -23,9 +23,9 @@
       <item>
        <layout class="QVBoxLayout" name="verticalLayout">
         <item>
-         <widget class="QPushButton" name="pushButton">
+         <widget class="QPushButton" name="PB_refresh">
           <property name="text">
-           <string>PushButton</string>
+           <string>刷新</string>
           </property>
          </widget>
         </item>

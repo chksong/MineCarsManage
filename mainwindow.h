@@ -31,6 +31,9 @@ public slots:
 
 
 
+private slots:
+    void on_PB_refresh_clicked();
+
 private:
     Ui::MainWindow *ui;
 

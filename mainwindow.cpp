@@ -47,9 +47,6 @@ void MainWindow::initTable()
     model->setTable("tb_carswork");
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
-
-
-
     ui->tableView->setModel(model);
   //  ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); //使其不可编辑
     ui->tableView->setColumnHidden(0, true);
@@ -95,9 +92,6 @@ void MainWindow::initTable()
 
     model->select(); //选取整个表的所有行
 
-
-
-
 }
 
 
@@ -105,24 +99,29 @@ void MainWindow::initTable()
 // 添加车的类型
 void MainWindow::carsClassManage(bool var)
 {
-  //  qDebug() <<" carsClassManage " << var <<  endl ;
-    if(dlgCarsClass) {
-        dlgCarsClass->show() ;
-    }
-    else {
-        dlgCarsClass = new CarsClassDialog (this) ;
-        dlgCarsClass->show();
-    }
+
+    dlgCarsClass = new CarsClassDialog (this) ;
+    dlgCarsClass->exec()  ;
 }
 
 // 添加每日工作
 void MainWindow::addOneDayWork(bool var)
 {
-    if(dlgAddDayWorkDlg) {
-        dlgAddDayWorkDlg->show() ;
+
+
+ //  https://blog.csdn.net/hebbely/article/details/54285855
+ // 模式非模式对话框
+
+    dlgAddDayWorkDlg = new AddDayWorkDialog () ;
+    dlgAddDayWorkDlg->exec() ;
+
+    {
+         model->select(); //选取整个表的所有行
     }
-    else {
-        dlgAddDayWorkDlg = new AddDayWorkDialog () ;
-        dlgAddDayWorkDlg->show() ;
-    }
+}
+
+// 刷新
+void MainWindow::on_PB_refresh_clicked()
+{
+   model->select(); //选取整个表的所有行
 }
