@@ -12,6 +12,7 @@ CarsClassDialog::CarsClassDialog(QWidget *parent) :
     ui(new Ui::CarsClassDialog)
 {
     ui->setupUi(this);
+    setAttribute (Qt::WA_DeleteOnClose);
 
 
     // 初始化数据库的表格管理
@@ -84,7 +85,5 @@ void CarsClassDialog::clicked_rightMenu(const QPoint &pos)
     rightMenu->addAction(pasteAction);
     rightMenu->addAction(deleteAction);
     rightMenu->exec(QCursor::pos());
-
-
 
 }
