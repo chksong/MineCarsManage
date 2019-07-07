@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSqlTableModel>
+
 
 
 #include "carsclassdialog.h"
@@ -20,9 +22,14 @@ public:
     explicit MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+    void initTable() ;
+
 public slots:
     void carsClassManage(bool) ;
     void addOneDayWork(bool)  ;
+
+
+
 
 private:
     Ui::MainWindow *ui;
@@ -30,6 +37,8 @@ private:
 private:
     CarsClassDialog *dlgCarsClass  {nullptr} ;
     AddDayWorkDialog*  dlgAddDayWorkDlg  {nullptr} ;
+
+    QSqlTableModel  *model{nullptr};
 
 };
 
