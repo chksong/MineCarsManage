@@ -13,7 +13,7 @@
   <property name="windowTitle">
    <string>挖掘机每日工作录入</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_5" stretch="3,5,2,4,0">
+  <layout class="QVBoxLayout" name="verticalLayout_5">
    <item>
     <widget class="QGroupBox" name="groupBox_2">
      <property name="title">
@@ -35,7 +35,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDateEdit" name="dateEdit"/>
+           <widget class="QDateEdit" name="dateEdit_add"/>
           </item>
          </layout>
         </item>
@@ -49,7 +49,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="comboBox"/>
+           <widget class="QComboBox" name="comboBox_people"/>
           </item>
          </layout>
         </item>
@@ -70,7 +70,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit"/>
+           <widget class="QLineEdit" name="lineEdit_cardid"/>
           </item>
          </layout>
         </item>
@@ -84,7 +84,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="comboBox_2">
+           <widget class="QComboBox" name="comboBox_carclass">
             <property name="editable">
              <bool>false</bool>
             </property>
@@ -177,7 +177,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_2"/>
+           <widget class="QLineEdit" name="lineEdit_rz_where"/>
           </item>
          </layout>
         </item>
@@ -191,7 +191,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="comboBox_3">
+           <widget class="QComboBox" name="comboBox_rz_type">
             <property name="editable">
              <bool>true</bool>
             </property>
@@ -216,7 +216,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox"/>
+           <widget class="QSpinBox" name="spinBox_tk_carnums"/>
           </item>
          </layout>
         </item>
@@ -230,7 +230,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="doubleSpinBox_2"/>
+           <widget class="QDoubleSpinBox" name="doubleSpinBox_tk_tons"/>
           </item>
          </layout>
         </item>
@@ -251,7 +251,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_3"/>
+           <widget class="QSpinBox" name="spinBox_xk_carsno"/>
           </item>
          </layout>
         </item>
@@ -265,7 +265,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="doubleSpinBox_4"/>
+           <widget class="QDoubleSpinBox" name="doubleSpinBox_xk_tons"/>
           </item>
          </layout>
         </item>
@@ -286,7 +286,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_5"/>
+           <widget class="QSpinBox" name="spinBox_wk_carsno"/>
           </item>
          </layout>
         </item>
@@ -300,7 +300,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="doubleSpinBox_6"/>
+           <widget class="QDoubleSpinBox" name="doubleSpinBox_wk_tons"/>
           </item>
          </layout>
         </item>
@@ -321,7 +321,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_7"/>
+           <widget class="QSpinBox" name="spinBox_by_carnums"/>
           </item>
          </layout>
         </item>
@@ -335,7 +335,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="doubleSpinBox_8"/>
+           <widget class="QDoubleSpinBox" name="doubleSpinBox_by_tons"/>
           </item>
          </layout>
         </item>
@@ -365,7 +365,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="comboBox_4">
+           <widget class="QComboBox" name="comboBox_rg_where">
             <property name="editable">
              <bool>true</bool>
             </property>
@@ -383,7 +383,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="comboBox_5"/>
+           <widget class="QComboBox" name="comboBox_rg_type"/>
           </item>
          </layout>
         </item>
@@ -404,7 +404,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="doubleSpinBox_3"/>
+           <widget class="QDoubleSpinBox" name="doubleSpinBox_rg_hours"/>
           </item>
          </layout>
         </item>
@@ -458,7 +458,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="doubleSpinBox_9">
+           <widget class="QDoubleSpinBox" name="doubleSpinBox_hoursofday">
             <property name="decimals">
              <number>1</number>
             </property>
@@ -476,7 +476,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="doubleSpinBox_10">
+           <widget class="QDoubleSpinBox" name="doubleSpinBox_oils">
             <property name="suffix">
              <string> 升</string>
             </property>
@@ -501,7 +501,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="doubleSpinBox">
+           <widget class="QDoubleSpinBox" name="doubleSpinBox_materials">
             <property name="suffix">
              <string> 元</string>
             </property>
@@ -519,7 +519,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
+           <widget class="QDoubleSpinBox" name="doubleSpinBox_repair">
             <property name="suffix">
              <string> 元</string>
             </property>
@@ -530,7 +530,7 @@
        </layout>
       </item>
       <item>
-       <widget class="QTextEdit" name="textEdit">
+       <widget class="QTextEdit" name="textEdit_comment">
         <property name="placeholderText">
          <string>请输出备注</string>
         </property>
@@ -540,11 +540,61 @@
     </widget>
    </item>
    <item>
-    <widget class="QPushButton" name="PB_TEST">
-     <property name="text">
-      <string>TEST_fun</string>
-     </property>
-    </widget>
+    <layout class="QHBoxLayout" name="horizontalLayout_37">
+     <item>
+      <spacer name="horizontalSpacer_3">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="PB_ADD">
+       <property name="text">
+        <string>添加</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_4">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QPushButton" name="PB_CANCLE">
+       <property name="text">
+        <string>取消</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer_5">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
    </item>
   </layout>
  </widget>
