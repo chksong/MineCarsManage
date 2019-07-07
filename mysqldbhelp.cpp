@@ -57,37 +57,38 @@ bool MysqlDBHelp::initTables()
     auto ret_carClass = query.exec(sqlcarclass) ;
 
 
+    //2 日常工作
 //    DROP TABLE IF EXISTS `tb_carswork`;
-//    CREATE TABLE `tb_carswork` (
-//      `id` int(11) NOT NULL AUTO_INCREMENT,
-//      `date` date NOT NULL,
-//      `addtime` datetime NOT NULL,
-//      `carid` int(11) NOT NULL,
-//      `carclass` varchar(100) NOT NULL,
-//      `people` varchar(50) DEFAULT NULL,
-//      `hoursOfMonth` int(11) DEFAULT NULL,
-//      `rz_where` varchar(100) DEFAULT NULL,
-//      `rz_type` varchar(50) DEFAULT NULL,
-//      `tk_carnums` int(11) DEFAULT NULL,
-//      `tk_tons` double DEFAULT NULL,
-//      `xk_carnums` int(11) DEFAULT NULL,
-//      `xk_tons` double DEFAULT NULL,
-//      `wk_carnums` int(11) DEFAULT NULL,
-//      `wk_tons` double DEFAULT NULL,
-//      `by_carnums` int(11) DEFAULT NULL,
-//      `by_tons` double DEFAULT NULL,
-//      `rg_where` varchar(100) DEFAULT NULL,
-//      `rg_type` varchar(50) DEFAULT NULL,
-//      `rg_hours` double DEFAULT NULL,
-//      `hoursofdays` double DEFAULT NULL,
-//      `diesel_oil` double DEFAULT NULL,
-//      `materials` double DEFAULT NULL,
-//      `repair` double DEFAULT NULL,
-//      `comment` varchar(300) DEFAULT NULL,
-//      PRIMARY KEY (`id`)
-//    ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+   QString sql_carswork =  "CREATE TABLE IF NOT EXISTS `tb_carswork` ( \
+          `id` int(11) NOT NULL AUTO_INCREMENT,      \
+          `date` date NOT NULL,                      \
+          `addtime` datetime NOT NULL,               \
+          `carid` int(11) NOT NULL,                  \
+          `carclass` varchar(100) NOT NULL,          \
+          `people` varchar(50) DEFAULT NULL,        \
+          `hoursOfMonth` int(11) DEFAULT NULL,       \
+          `rz_where` varchar(100) DEFAULT NULL,     \
+          `rz_type` varchar(50) DEFAULT NULL,       \
+          `tk_carnums` int(11) DEFAULT NULL,        \
+          `tk_tons` double DEFAULT NULL,            \
+          `xk_carnums` int(11) DEFAULT NULL,        \
+          `xk_tons` double DEFAULT NULL,            \
+          `wk_carnums` int(11) DEFAULT NULL,        \
+          `wk_tons` double DEFAULT NULL,            \
+          `by_carnums` int(11) DEFAULT NULL,        \
+          `by_tons` double DEFAULT NULL,            \
+          `rg_where` varchar(100) DEFAULT NULL,     \
+          `rg_type` varchar(50) DEFAULT NULL,       \
+          `rg_hours` double DEFAULT NULL,           \
+          `hoursofdays` double DEFAULT NULL,        \
+          `diesel_oil` double DEFAULT NULL,         \
+          `materials` double DEFAULT NULL,          \
+          `repair` double DEFAULT NULL,             \
+          `comment` varchar(300) DEFAULT NULL,      \
+           PRIMARY KEY (`id`)                       \
+        ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8; " ;
 
-
+   auto ret_carswork = query.exec(sql_carswork) ;
 
 
     return false  ;
