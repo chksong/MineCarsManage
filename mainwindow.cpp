@@ -1,9 +1,9 @@
 ﻿
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-#include <carsclassdialog.h>
-
-
+#include "carsclassdialog.h"
+#include "carsmanagedialog.h"
+#include "peopledialog.h"
 
 
 #include <QDebug>
@@ -28,6 +28,8 @@ MainWindow::MainWindow(QWidget *parent) :
     // 关联按钮
     connect(ui->actionCarsClass, &QAction::triggered , this ,&MainWindow::carsClassManage) ;
     connect(ui->actionAddOneDay, &QAction::triggered, this,  &MainWindow::addOneDayWork)  ;
+    connect(ui->actionCarsManag, &QAction::triggered, this,  &MainWindow::carsManage) ;
+    connect(ui->actionPeople ,   &QAction::triggered ,this,  &MainWindow::peopleManage )  ;
 
 
 
@@ -95,8 +97,20 @@ void MainWindow::initTable()
 }
 
 
+// 车辆管理
+void  MainWindow::carsManage(bool var)
+{
+    CarsManageDialog *dlg = new CarsManageDialog(this) ;
+    dlg->exec() ;
+}
 
-// 添加车的类型
+void MainWindow::peopleManage(bool var)
+{
+
+}
+
+
+//  车的类型
 void MainWindow::carsClassManage(bool var)
 {
 
@@ -107,8 +121,6 @@ void MainWindow::carsClassManage(bool var)
 // 添加每日工作
 void MainWindow::addOneDayWork(bool var)
 {
-
-
  //  https://blog.csdn.net/hebbely/article/details/54285855
  // 模式非模式对话框
 
@@ -125,3 +137,6 @@ void MainWindow::on_PB_refresh_clicked()
 {
    model->select(); //选取整个表的所有行
 }
+
+
+

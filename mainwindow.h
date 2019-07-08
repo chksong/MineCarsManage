@@ -27,6 +27,8 @@ public:
 public slots:
     void carsClassManage(bool) ;
     void addOneDayWork(bool)  ;
+    void carsManage(bool)  ;
+    void peopleManage(bool)  ;
 
 
 

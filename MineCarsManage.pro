@@ -30,20 +30,26 @@ CONFIG += c++11
 SOURCES += \
         adddayworkdialog.cpp \
         carsclassdialog.cpp \
+        carsmanagedialog.cpp \
         main.cpp \
         mainwindow.cpp \
-        mysqldbhelp.cpp
+        mysqldbhelp.cpp \
+        peopledialog.cpp
 
 HEADERS += \
         adddayworkdialog.h \
         carsclassdialog.h \
+        carsmanagedialog.h \
         mainwindow.h \
-        mysqldbhelp.h
+        mysqldbhelp.h \
+        peopledialog.h
 
 FORMS += \
         adddayworkdialog.ui \
         carsclassdialog.ui \
-        mainwindow.ui
+        carsmanagedialog.ui \
+        mainwindow.ui \
+        peopledialog.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin
