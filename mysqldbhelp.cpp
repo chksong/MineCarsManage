@@ -69,8 +69,8 @@ bool MysqlDBHelp::initTables()
           `hoursOfMonth` int(11) DEFAULT NULL,       \
           `rz_where` varchar(100) DEFAULT NULL,     \
           `rz_type` varchar(50) DEFAULT NULL,       \
-          `tk_carnums` int(11) DEFAULT NULL,        \
-          `tk_tons` double DEFAULT NULL,            \
+          `yk_carnums` int(11) DEFAULT NULL,        \
+          `yk_tons` double DEFAULT NULL,            \
           `xk_carnums` int(11) DEFAULT NULL,        \
           `xk_tons` double DEFAULT NULL,            \
           `wk_carnums` int(11) DEFAULT NULL,        \
