@@ -119,7 +119,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="doubleSpinBox_2">
+           <widget class="QDoubleSpinBox" name="doubleSpinBox_hoursOfMonth">
             <property name="decimals">
              <number>1</number>
             </property>
@@ -177,7 +177,14 @@
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_rz_where"/>
+           <widget class="QComboBox" name="comboBox_rz_where">
+            <property name="enabled">
+             <bool>true</bool>
+            </property>
+            <property name="editable">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -211,12 +218,12 @@
           <item>
            <widget class="QLabel" name="label_7">
             <property name="text">
-             <string>铁矿石车数：</string>
+             <string>原矿石车数：</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_tk_carnums"/>
+           <widget class="QSpinBox" name="spinBox_yk_carnums"/>
           </item>
          </layout>
         </item>
@@ -225,12 +232,12 @@
           <item>
            <widget class="QLabel" name="label_8">
             <property name="text">
-             <string>铁矿石吨数：</string>
+             <string>原矿石吨数：</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QDoubleSpinBox" name="doubleSpinBox_tk_tons"/>
+           <widget class="QDoubleSpinBox" name="doubleSpinBox_yk_tons"/>
           </item>
          </layout>
         </item>
@@ -251,7 +258,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_xk_carsno"/>
+           <widget class="QSpinBox" name="spinBox_xk_carnums"/>
           </item>
          </layout>
         </item>
@@ -286,7 +293,7 @@
            </widget>
           </item>
           <item>
-           <widget class="QSpinBox" name="spinBox_wk_carsno"/>
+           <widget class="QSpinBox" name="spinBox_wk_carnums"/>
           </item>
          </layout>
         </item>
@@ -383,7 +390,11 @@
            </widget>
           </item>
           <item>
-           <widget class="QComboBox" name="comboBox_rg_type"/>
+           <widget class="QComboBox" name="comboBox_rg_type">
+            <property name="editable">
+             <bool>true</bool>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
