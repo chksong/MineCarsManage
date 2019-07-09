@@ -46,6 +46,8 @@ bool MysqlDBHelp::testMysqlAvailabe()
 
 bool MysqlDBHelp::initTables()
 {
+   // "CREATE DATABASE IF NOT EXISTS DB_MineCars DEFAULT CHARSET utf8 COLLATE utf8_general_ci"
+
     //1 车的类型的表格
     QString sqlcarclass =" CREATE TABLE IF NOT EXISTS `tb_carsclass` (  \
                `id` int(11) NOT NULL AUTO_INCREMENT,  \
