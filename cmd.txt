@@ -1,0 +1,14 @@
+/mysqld_safe --skip-grant-tables &
+SET PASSWORD FOR 'root'@'localhost' = PASSWORD('你的新密码');
+FLUSH PRIVILEGES;
+
+
+
+git config --global https.proxy
+git config --global --unset http.proxy
+git config --global --unset https.proxy
+
+
+
+
+
