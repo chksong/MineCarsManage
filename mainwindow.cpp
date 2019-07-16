@@ -11,6 +11,7 @@
 
 
 
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -24,6 +25,8 @@ MainWindow::MainWindow(QWidget *parent) :
     // 初始化表格
     initTable() ;
 
+
+  //  ui->menuBar->addAction("日期",this,&MainWindow::peopleManage) ;
 
     // 关联按钮
     connect(ui->actionCarsClass, &QAction::triggered , this ,&MainWindow::carsClassManage) ;
@@ -104,8 +107,12 @@ void  MainWindow::carsManage(bool var)
     dlg->exec() ;
 }
 
+
+//  人口管理
 void MainWindow::peopleManage(bool var)
 {
+    PeopleDialog *dlg = new PeopleDialog() ;
+    dlg->exec() ;
 
 }
 
