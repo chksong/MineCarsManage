@@ -1,3 +1,17 @@
 /ui_adddayworkdialog.h
 /ui_carsclassdialog.h
 /ui_mainwindow.h
+MineCarsManage.app
+*.o
+moc_adddayworkdialog.cpp
+Makefile
+MineCarsManage.pro.user
+moc_carsclassdialog.cpp
+moc_carsmanagedialog.cpp
+moc_mainwindow.cpp
+moc_peopledialog.cpp
+moc_predefs.h
+ui_carsmanagedialog.h
+ui_peopledialog.h
+libmysqlclient.20.dylib
+.qmake.stash

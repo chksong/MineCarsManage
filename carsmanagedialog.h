@@ -15,6 +15,15 @@ public:
     explicit CarsManageDialog(QWidget *parent = nullptr);
     ~CarsManageDialog();
 
+private slots:
+    void on_PB_ADD_clicked();
+
+    void on_PB_DEL_clicked();
+
+    void on_PB_SAVE_MODIY_clicked();
+
+    void on_PB_CANCEL_MODIFY_clicked();
+
 private:
     Ui::CarsManageDialog *ui;
 };
