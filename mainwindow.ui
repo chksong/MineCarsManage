@@ -120,7 +120,7 @@
   </action>
   <action name="actionCarsClass">
    <property name="text">
-    <string>类型管理</string>
+    <string>品牌管理</string>
    </property>
   </action>
   <action name="actionCarsManag">

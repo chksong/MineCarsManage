@@ -21,7 +21,7 @@ CarsClassDialog::CarsClassDialog(QWidget *parent) :
     model->setTable("tb_carsclass");
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
   //  model->setHeaderData(0, Qt::Horizontal, "ID");
-    model->setHeaderData(1, Qt::Horizontal, QStringLiteral("挖掘机型号"));
+    model->setHeaderData(1, Qt::Horizontal, QStringLiteral("品牌型号"));
     model->select(); //选取整个表的所有行
 
     ui->tableView->setModel(model);

@@ -2,6 +2,10 @@
 #define CARSMANAGEDIALOG_H
 
 #include <QDialog>
+#include <QSqlTableModel>
+#include <QSqlRelationalTableModel>
+#include <QMap>
+
 
 namespace Ui {
 class CarsManageDialog;
@@ -26,6 +30,10 @@ private slots:
 
 private:
     Ui::CarsManageDialog *ui;
+
+ //   QSqlTableModel  *model{nullptr} ;
+    QSqlRelationalTableModel  *model{nullptr} ;
+    QMap<QString ,int> mMapCarCalss_ID ;
 };
 
 #endif // CARSMANAGEDIALOG_H

@@ -6,7 +6,7 @@
 #include <QCoreApplication>
 #include <QString>
 #include <QSqlQuery>
-
+#include <QMessageLogger>
 
 MysqlDBHelp::MysqlDBHelp()
 {
@@ -59,6 +59,38 @@ bool MysqlDBHelp::initTables()
     QSqlQuery query(_db);
     auto ret_carClass = query.exec(sqlcarclass) ;
 
+
+
+
+    {
+        //3 车的表格
+        QString sqlcars =" CREATE TABLE IF NOT EXISTS `tb_cars` (  \
+                   `id` int(11) NOT NULL AUTO_INCREMENT,  \
+                   `name` varchar(255) DEFAULT NULL,  \
+                    `carsclassid`  int(11)  , \
+                    FOREIGN KEY(carsclassid) REFERENCES tb_carsclass(id) ,\
+                    PRIMARY KEY (`id`)    \
+                  ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8; " ;
+
+
+       auto ret_cars = query.exec(sqlcars) ;
+    }
+
+
+    {
+        //4 人的表格
+        QString sqlpeople =" CREATE TABLE IF NOT EXISTS `tb_people` (  \
+                   `id` int(11) NOT NULL AUTO_INCREMENT,  \
+                   `name` varchar(255) DEFAULT NULL,  \
+                   `carid` int(11) DEFAULT NULL,  \
+                    PRIMARY KEY (`id`)    \
+                  ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8; " ;
+
+
+        auto ret_people = query.exec(sqlpeople) ;
+    }
+
+
     {
     //3 日常工作
     //    DROP TABLE IF EXISTS `tb_carswork`;
@@ -94,34 +126,6 @@ bool MysqlDBHelp::initTables()
         auto ret_carswork = query.exec(sql_carswork) ;
 
    }
-
-
-    {
-        //3 车的表格
-        QString sqlcars =" CREATE TABLE IF NOT EXISTS `tb_cars` (  \
-                   `id` int(11) NOT NULL AUTO_INCREMENT,  \
-                   `nameid` varchar(255) DEFAULT NULL,  \
-                    sqlcarclass varchar(255) DEFAULT NULL,  \
-                    PRIMARY KEY (`id`)    \
-                  ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8; " ;
-
-
-       auto ret_cars = query.exec(sqlcars) ;
-    }
-
-
-    {
-        //4 人的表格
-        QString sqlpeople =" CREATE TABLE IF NOT EXISTS `tb_people` (  \
-                   `id` int(11) NOT NULL AUTO_INCREMENT,  \
-                   `name` varchar(255) DEFAULT NULL,  \
-                   `carid` int(11) DEFAULT NULL,  \
-                    PRIMARY KEY (`id`)    \
-                  ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8; " ;
-
-
-        auto ret_people = query.exec(sqlpeople) ;
-    }
 
     return false  ;
 }
