@@ -5,6 +5,7 @@
 #include <QSqlTableModel>
 #include <QSqlRelationalTableModel>
 #include <QMap>
+#include <QModelIndex>
 
 
 namespace Ui {
@@ -28,12 +29,18 @@ private slots:
 
     void on_PB_CANCEL_MODIFY_clicked();
 
+
+    void clicked(QModelIndex modleIndex) ;
+    void doubleClicked(QModelIndex modleIndex) ;
+
 private:
     Ui::CarsManageDialog *ui;
 
  //   QSqlTableModel  *model{nullptr} ;
     QSqlRelationalTableModel  *model{nullptr} ;
     QMap<QString ,int> mMapCarCalss_ID ;
+
+    QModelIndex  lastModeIndex ; //上次点击的
 };
 
 #endif // CARSMANAGEDIALOG_H

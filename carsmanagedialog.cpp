@@ -23,6 +23,10 @@ CarsManageDialog::CarsManageDialog(QWidget *parent) :
     ui->setupUi(this);
     setAttribute (Qt::WA_DeleteOnClose);
 
+    //关联双击
+    connect(ui->tableView,&QTableView::doubleClicked, this,&CarsManageDialog::doubleClicked)  ;
+    connect(ui->tableView,&QTableView::clicked, this,&CarsManageDialog::clicked)  ;
+
     //0  构造汽车管理的表格
     model = new QSqlRelationalTableModel(this);
     model->setTable("tb_cars");
@@ -33,10 +37,13 @@ CarsManageDialog::CarsManageDialog(QWidget *parent) :
     model->setRelation(2,QSqlRelation("tb_carsclass","id","name")) ;
     model->select(); //选取整个表的所有行
 
+
     ui->tableView->setModel(model);
-    ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); //使其不可编辑
+ //   ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); //使其不可编辑
     ui->tableView->setColumnHidden(0, true);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+
+
    // ui->tableView->resizeColumnsToContents();
 
 
@@ -46,6 +53,7 @@ CarsManageDialog::CarsManageDialog(QWidget *parent) :
     while (query.next()) {
      //   query.value(0)
         mMapCarCalss_ID.insert(query.value(0).toString(),query.value(1).toInt());
+
         ui->comboBox_CarList->addItem(query.value(0).toString()) ;
     }
 }
@@ -117,8 +125,17 @@ void CarsManageDialog::on_PB_DEL_clicked()
 
 void CarsManageDialog::on_PB_SAVE_MODIY_clicked()
 {
-    model->database().transaction(); //开始事务操作
 
+    // 删除旧有modleIndex 的控件
+    if( ui->tableView->indexWidget(lastModeIndex))   {
+        QComboBox *comboBox = (QComboBox*)ui->tableView->indexWidget(lastModeIndex) ;
+        model->setData(lastModeIndex, mMapCarCalss_ID[comboBox->currentText()]);
+        ui->tableView->setIndexWidget(lastModeIndex,nullptr) ;
+        delete  comboBox ;
+    }
+
+
+    model->database().transaction(); //开始事务操作
     if (model->submitAll()) {
         model->database().commit(); //提交
     }
@@ -133,5 +150,55 @@ void CarsManageDialog::on_PB_SAVE_MODIY_clicked()
 
 void CarsManageDialog::on_PB_CANCEL_MODIFY_clicked()
 {
+    // 删除旧有modleIndex 的控件
+    if( ui->tableView->indexWidget(lastModeIndex))   {
+        QWidget *comboBox = ui->tableView->indexWidget(lastModeIndex) ;
+        ui->tableView->setIndexWidget(lastModeIndex,nullptr) ;
+        delete  comboBox ;
+    }
+
     model->revertAll();
+}
+
+
+void  CarsManageDialog::doubleClicked(QModelIndex modleIndex)
+{
+    // 删除旧有modleIndex 的控件
+    if(lastModeIndex != modleIndex && ui->tableView->indexWidget(lastModeIndex))   {
+        QWidget *comboBox = ui->tableView->indexWidget(lastModeIndex) ;
+        ui->tableView->setIndexWidget(lastModeIndex,nullptr) ;
+        delete  comboBox ;
+    }
+
+    if(2 != modleIndex.column())
+        return ;
+
+    //添加新的控件
+    QComboBox *comboBox  = new QComboBox(this) ;
+    ui->tableView->setIndexWidget(modleIndex,comboBox) ;
+
+   int carclassID  = model->data(modleIndex).toInt() ;
+    QMap<QString, int>::iterator iter = mMapCarCalss_ID.begin();
+    while (iter != mMapCarCalss_ID.end()) {
+        comboBox->addItem(iter.key()) ;
+
+        if(carclassID == iter.value()) {
+            comboBox->setCurrentText(iter.key())  ;
+        }
+        ++iter ;
+    }
+
+    lastModeIndex = modleIndex ;
+}
+
+
+void CarsManageDialog::clicked(QModelIndex modleIndex)
+{
+    // 删除旧有modleIndex 的控件
+    if(lastModeIndex != modleIndex && ui->tableView->indexWidget(lastModeIndex))   {
+        QWidget *comboBox = ui->tableView->indexWidget(lastModeIndex) ;
+        ui->tableView->setIndexWidget(lastModeIndex,nullptr) ;
+        delete  comboBox ;
+    }
+
 }
