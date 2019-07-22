@@ -77,22 +77,27 @@ int main(int argc, char *argv[])
      //---- Check for another instance code snippet ----
      //GUID : Generated once for your application
      // you could get one GUID here: http://www.guidgenerator.com/online-guid-generator.aspx
-     QSharedMemory shared("62d60669-bb94-4a94-88bb-b9884890a7e04");
 
-     if( !shared.create( 512, QSharedMemory::ReadWrite) )
+    //
+     //https://www.cnblogs.com/techiel/p/8035263.html
+     QSharedMemory shared("MineCarsApp");
+     if(shared.attach())
      {
-       // For a GUI application, replace this by :
-        QMessageBox msgBox;
-        msgBox.setText( QObject::tr("不能启动多个实例.") );
-        msgBox.setIcon( QMessageBox::Critical );
-        msgBox.exec();
+         // For a GUI application, replace this by :
+          QMessageBox msgBox;
+          msgBox.setText( QObject::tr("不能启动多个实例.") );
+          msgBox.setIcon( QMessageBox::Critical );
+          msgBox.exec();
 
-        qWarning() << "Can't start more than one instance of the application.";
-        a.exit(0);
+         qWarning() << "Can't start more than one instance of the application.";
+         return  0;
      }
-     else {
-         qDebug() << "Application started successfully.";
+
+
+    if( shared.create( 512, QSharedMemory::ReadWrite) ){
+
      }
+
     initMySQLDB() ;
 
 
