@@ -49,15 +49,21 @@ bool MysqlDBHelp::initTables()
     //0 建立数据看
     // "CREATE DATABASE IF NOT EXISTS DB_MineCars DEFAULT CHARSET utf8 COLLATE utf8_general_ci"
 
-    //1 车的类型的表格
-    QString sqlcarclass =" CREATE TABLE IF NOT EXISTS `tb_carsclass` (  \
-               `id` int(11) NOT NULL AUTO_INCREMENT,  \
-               `name` varchar(255) DEFAULT NULL,  \
-                PRIMARY KEY (`id`)    \
-              ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8; " ;
+     QSqlQuery query(_db);
 
-    QSqlQuery query(_db);
-    auto ret_carClass = query.exec(sqlcarclass) ;
+    {
+        //1 车的类型的表格
+        QString sqlcarclass =" CREATE TABLE IF NOT EXISTS `tb_carsclass` (  \
+                   `id` int(11) NOT NULL AUTO_INCREMENT,  \
+                   `name` varchar(255) DEFAULT NULL,  \
+                    PRIMARY KEY (`id`)    \
+                  ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8; " ;
+
+
+        auto ret_carClass = query.exec(sqlcarclass) ;
+        qDebug()  << "  ret_carClass=="  << ret_carClass  ;
+    }
+
 
 
 
@@ -74,6 +80,7 @@ bool MysqlDBHelp::initTables()
 
 
        auto ret_cars = query.exec(sqlcars) ;
+       qDebug()  << "  ret_cars=="  << ret_cars  ;
     }
 
 
@@ -82,17 +89,19 @@ bool MysqlDBHelp::initTables()
         QString sqlpeople =" CREATE TABLE IF NOT EXISTS `tb_people` (  \
                    `id` int(11) NOT NULL AUTO_INCREMENT,  \
                    `name` varchar(255) DEFAULT NULL,  \
-                   `carid` int(11) DEFAULT NULL,  \
+                   `carid` int(11)  , \
+                    FOREIGN KEY(carid) REFERENCES tb_cars(id) ,\
                     PRIMARY KEY (`id`)    \
                   ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8; " ;
 
 
         auto ret_people = query.exec(sqlpeople) ;
+        qDebug()  << "  ret_people=="  << ret_people  ;
     }
 
 
     {
-    //3 日常工作
+    //5 日常工作
     //    DROP TABLE IF EXISTS `tb_carswork`;
    QString sql_carswork =  "CREATE TABLE IF NOT EXISTS `tb_carswork` ( \
           `id` int(11) NOT NULL AUTO_INCREMENT,      \
