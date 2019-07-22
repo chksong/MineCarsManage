@@ -54,7 +54,7 @@ CarsManageDialog::CarsManageDialog(QWidget *parent) :
      //   query.value(0)
         mMapCarCalss_ID.insert(query.value(0).toString(),query.value(1).toInt());
 
-        ui->comboBox_CarList->addItem(query.value(0).toString()) ;
+        ui->comboBox_CarClassList->addItem(query.value(0).toString()) ;
     }
 }
 
@@ -67,7 +67,7 @@ void CarsManageDialog::on_PB_ADD_clicked()
 {
 
     if(ui->lineEdit_CarID->text().isEmpty()
-            || ui->comboBox_CarList->currentText().isEmpty())
+            || ui->comboBox_CarClassList->currentText().isEmpty())
     {
         QMessageBox::warning(this, QString::fromLocal8Bit("警告"),
                              QString::fromLocal8Bit("车号或者品牌类型为空"),
@@ -81,7 +81,7 @@ void CarsManageDialog::on_PB_ADD_clicked()
 
     auto strSql = QString("name = '%1' and carsclassid = '%2'")
            .arg(ui->lineEdit_CarID->text())
-           .arg(mMapCarCalss_ID[ui->comboBox_CarList->currentText()]);
+           .arg(mMapCarCalss_ID[ui->comboBox_CarClassList->currentText()]);
 
     modelQuery->setFilter(strSql);
     modelQuery->select();
@@ -97,7 +97,7 @@ void CarsManageDialog::on_PB_ADD_clicked()
     int rowNum = model->rowCount(); //获得表的行数
     model->insertRow(rowNum); //添加一行
     model->setData(model->index(rowNum, 1), ui->lineEdit_CarID->text());
-    model->setData(model->index(rowNum,2),  mMapCarCalss_ID[ui->comboBox_CarList->currentText()]);
+    model->setData(model->index(rowNum,2),  mMapCarCalss_ID[ui->comboBox_CarClassList->currentText()]);
     bool ret = model->submitAll()  ;
 
 }

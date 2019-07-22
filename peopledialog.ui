@@ -28,7 +28,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QLineEdit" name="lineEdit"/>
+          <widget class="QLineEdit" name="lineEdit_Name"/>
          </item>
         </layout>
        </item>
@@ -37,12 +37,12 @@
          <item>
           <widget class="QLabel" name="label_2">
            <property name="text">
-            <string>挖掘机ID：</string>
+            <string>车号：</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QComboBox" name="comboBox"/>
+          <widget class="QComboBox" name="comboBox_CarIDList"/>
          </item>
         </layout>
        </item>
@@ -56,28 +56,28 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout">
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="PB_Add">
            <property name="text">
             <string>添加</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_2">
+          <widget class="QPushButton" name="PB_Del">
            <property name="text">
             <string>删除</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_3">
+          <widget class="QPushButton" name="PB_Save_Modify">
            <property name="text">
             <string>保存修改</string>
            </property>
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_4">
+          <widget class="QPushButton" name="PB_Cancle_Modify">
            <property name="text">
             <string>取消修改</string>
            </property>
