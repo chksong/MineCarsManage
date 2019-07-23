@@ -6,6 +6,7 @@
 
 #include <QDialog>
 #include <QSqlTableModel>
+#include <QMap>
 
 
 
@@ -31,10 +32,14 @@ private slots:
 
     void on_PB_ADD_clicked();
 
+    void on_comboBox_cardid_currentTextChanged(const QString &arg1);
+
 private:
     Ui::AddDayWorkDialog *ui;
 
     QSqlTableModel  *model{nullptr} ;
+    QMap<QString ,int> mMapCars_ID ;
+    QMap<QString ,int> mMapPeople_ID ;
 };
 
 #endif // ADDDAYWORKDIALOG_H

@@ -7,7 +7,7 @@
 
 #include <QDateTime>
 #include <QMessageBox>
-
+#include <QSqlQuery>
 
 AddDayWorkDialog::AddDayWorkDialog(QWidget *parent) :
     QDialog(parent),
@@ -23,6 +23,15 @@ AddDayWorkDialog::AddDayWorkDialog(QWidget *parent) :
 
     //时间控件初始化当前日期
     ui->dateEdit_add->setDate(QDateTime::currentDateTime().date()) ;
+
+    //添加车的ID
+    QSqlQuery  query ;
+    query.exec("select name,id from tb_cars") ;
+    while (query.next()) {
+        mMapCars_ID.insert(query.value(0).toString(),  query.value(1).toInt());
+        ui->comboBox_cardid->addItem(query.value(0).toString()) ;
+    }
+
 
 }
 
@@ -63,9 +72,9 @@ void AddDayWorkDialog::on_PB_ADD_clicked()
     QString strDateadd = ui->dateEdit_add->date().toString("yyyy-MM-dd") ;
 
 
-   auto strSql = QString("date = '%1' and carid = '%2'").arg(strDateadd).arg(ui->lineEdit_cardid->text());
+//   auto strSql = QString("date = '%1' and carid = '%2'").arg(strDateadd).arg(ui->lin->text());
  // auto strSql = QString("name = '%1'").arg(strCarClass)  ;
-
+QString strSql  ;
     modelQuery->setFilter(strSql);
     modelQuery->select();
     auto curRows = modelQuery->rowCount();
@@ -81,8 +90,8 @@ void AddDayWorkDialog::on_PB_ADD_clicked()
     model->insertRow(rowNum); //添加一行
     model->setData(model->index(rowNum,1), strDateadd);   // 工作日期
     model->setData(model->index(rowNum,2), QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss")) ;  //添加的日期
-    model->setData(model->index(rowNum,3), ui->lineEdit_cardid->text());                // 车的ID
-    model->setData(model->index(rowNum,4), ui->comboBox_carclass->currentText());       //车的类型
+  //  model->setData(model->index(rowNum,3), ui->lineEdit_cardid->text());                // 车的ID
+ //   model->setData(model->index(rowNum,4), ui->comboBox_carclass->currentText());       //车的类型
 
     model->setData(model->index(rowNum,5), ui->comboBox_people->currentText());         //员工信息
     model->setData(model->index(rowNum,6), ui->doubleSpinBox_hoursOfMonth->value());    //月初小时候数
@@ -147,3 +156,20 @@ void AddDayWorkDialog::close()
 
 }
 
+
+void AddDayWorkDialog::on_comboBox_cardid_currentTextChanged(const QString &arg1)
+{
+    mMapPeople_ID.clear() ;
+    ui->comboBox_people->clear();
+
+    //添加员工姓名
+    QSqlQuery  query ;
+
+    QString strSql =  QString("select name ,id from tb_people where carid='%1'")
+                            .arg(mMapCars_ID[arg1]);
+    query.exec(strSql) ;
+    while (query.next()) {
+        mMapPeople_ID.insert(query.value(0).toString(),  query.value(1).toInt());
+        ui->comboBox_people->addItem(query.value(0).toString()) ;
+    }
+}

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>607</width>
-    <height>641</height>
+    <height>711</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,23 +19,27 @@
      <property name="title">
       <string>基本信息</string>
      </property>
-     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,1,1">
+     <layout class="QVBoxLayout" name="verticalLayout_2" stretch="1,1">
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_3">
         <property name="spacing">
          <number>31</number>
         </property>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout" stretch="3,7">
+         <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="3,7">
           <item>
-           <widget class="QLabel" name="label_3">
+           <widget class="QLabel" name="label_4">
             <property name="text">
-             <string>工作日期：</string>
+             <string>车号：</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QDateEdit" name="dateEdit_add"/>
+           <widget class="QComboBox" name="comboBox_cardid">
+            <property name="editable">
+             <bool>false</bool>
+            </property>
+           </widget>
           </item>
          </layout>
         </item>
@@ -56,59 +60,24 @@
        </layout>
       </item>
       <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_6">
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
         <property name="spacing">
          <number>31</number>
         </property>
         <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="3,7">
+         <layout class="QHBoxLayout" name="horizontalLayout" stretch="3,7">
           <item>
-           <widget class="QLabel" name="label_2">
+           <widget class="QLabel" name="label_3">
             <property name="text">
-             <string>车号：</string>
+             <string>工作日期：</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QLineEdit" name="lineEdit_cardid"/>
+           <widget class="QDateEdit" name="dateEdit_add"/>
           </item>
          </layout>
         </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="3,7">
-          <item>
-           <widget class="QLabel" name="label_4">
-            <property name="text">
-             <string>品牌型号：</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QComboBox" name="comboBox_carclass">
-            <property name="editable">
-             <bool>false</bool>
-            </property>
-            <item>
-             <property name="text">
-              <string>ffff</string>
-             </property>
-            </item>
-            <item>
-             <property name="text">
-              <string>ffff</string>
-             </property>
-            </item>
-           </widget>
-          </item>
-         </layout>
-        </item>
-       </layout>
-      </item>
-      <item>
-       <layout class="QHBoxLayout" name="horizontalLayout_22" stretch="1,1">
-        <property name="spacing">
-         <number>31</number>
-        </property>
         <item>
          <layout class="QHBoxLayout" name="horizontalLayout_20" stretch="3,7">
           <item>
@@ -120,34 +89,13 @@
           </item>
           <item>
            <widget class="QDoubleSpinBox" name="doubleSpinBox_hoursOfMonth">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="decimals">
              <number>1</number>
             </property>
            </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <layout class="QHBoxLayout" name="horizontalLayout_21">
-          <item>
-           <widget class="QLabel" name="label_14">
-            <property name="text">
-             <string/>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <spacer name="horizontalSpacer">
-            <property name="orientation">
-             <enum>Qt::Horizontal</enum>
-            </property>
-            <property name="sizeHint" stdset="0">
-             <size>
-              <width>40</width>
-              <height>20</height>
-             </size>
-            </property>
-           </spacer>
           </item>
          </layout>
         </item>
