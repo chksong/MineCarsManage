@@ -73,7 +73,7 @@ bool MysqlDBHelp::initTables()
         QString sqlcars =" CREATE TABLE IF NOT EXISTS `tb_cars` (  \
                    `id` int(11) NOT NULL AUTO_INCREMENT,  \
                    `name` varchar(255) DEFAULT NULL,  \
-                    `carsclassid`  int(11)  , \
+                    `carsclassid`  int(11)  NOT NULL , \
                     FOREIGN KEY(carsclassid) REFERENCES tb_carsclass(id) ,\
                     PRIMARY KEY (`id`)    \
                   ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8; " ;
@@ -89,7 +89,7 @@ bool MysqlDBHelp::initTables()
         QString sqlpeople =" CREATE TABLE IF NOT EXISTS `tb_people` (  \
                    `id` int(11) NOT NULL AUTO_INCREMENT,  \
                    `name` varchar(255) DEFAULT NULL,  \
-                   `carid` int(11)  , \
+                   `carid` int(11)  NOT NULL, \
                     FOREIGN KEY(carid) REFERENCES tb_cars(id) ,\
                     PRIMARY KEY (`id`)    \
                   ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8; " ;
@@ -108,8 +108,9 @@ bool MysqlDBHelp::initTables()
           `date` date NOT NULL,                      \
           `addtime` datetime NOT NULL,               \
           `carid` int(11) NOT NULL,                  \
-          `carclass` varchar(100) NOT NULL,          \
-          `people` varchar(50) DEFAULT NULL,        \
+           FOREIGN KEY(carid) REFERENCES tb_cars(id) ,\
+          `peopleid` int(11) NOT NULL,        \
+           FOREIGN KEY(peopleid) REFERENCES tb_people(id) ,\
           `hoursOfMonth` int(11) DEFAULT NULL,       \
           `rz_where` varchar(100) DEFAULT NULL,     \
           `rz_type` varchar(50) DEFAULT NULL,       \
