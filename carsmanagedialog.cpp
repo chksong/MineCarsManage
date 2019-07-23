@@ -12,8 +12,8 @@
 //   sql 简单用法
 //   https://www.cnblogs.com/coolcpp/p/qt-sql.html
 
-//  外键的使用
-// https://www.kancloud.cn/kancloud/qt-study-road-2/99497
+//   外键的使用
+//  https://www.kancloud.cn/kancloud/qt-study-road-2/99497
 
 
 CarsManageDialog::CarsManageDialog(QWidget *parent) :

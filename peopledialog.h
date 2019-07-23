@@ -6,6 +6,7 @@
 #include <QSqlRelationalTableModel>
 #include <QMap>
 #include <QModelIndex>
+#include <QKeyEvent>
 
 
 namespace Ui {
@@ -19,6 +20,8 @@ class PeopleDialog : public QDialog
 public:
     explicit PeopleDialog(QWidget *parent = nullptr);
     ~PeopleDialog();
+
+    void keyPressEvent(QKeyEvent *event) ;
 
 private slots:
     void on_PB_Add_clicked();
