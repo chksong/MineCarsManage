@@ -15,3 +15,10 @@ ui_carsmanagedialog.h
 ui_peopledialog.h
 libmysqlclient.20.dylib
 .qmake.stash
+moc_HHeaderItemDelegate.cpp
+moc_HHeaderModel.cpp
+moc_HHeaderView.cpp
+moc_TcTabelModel.cpp
+moc_TcTableView.cpp
+moc_TcTableWidget.cpp
+ui_TcTableWidget.h
