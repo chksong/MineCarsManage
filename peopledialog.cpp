@@ -1,4 +1,4 @@
-#include "peopledialog.h"
+﻿#include "peopledialog.h"
 #include "ui_peopledialog.h"
 
 
@@ -64,8 +64,8 @@ void PeopleDialog::on_PB_Add_clicked()
     if(ui->lineEdit_Name->text().isEmpty()
             || ui->comboBox_CarIDList->currentText().isEmpty())
     {
-        QMessageBox::warning(this, QString::fromLocal8Bit("警告"),
-                             QString::fromLocal8Bit("姓名或者车号为空"),
+        QMessageBox::warning(this, "警告",
+                             "姓名或者车号为空",
                QMessageBox::Ok);
          return  ;
     }

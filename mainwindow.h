@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 #include <QSqlTableModel>
+#include <QTableView>
 
 
 
@@ -23,7 +24,7 @@ public:
     ~MainWindow();
 
     void initTable() ;
-
+    void initHeadView(QTableView *pTableView)  ;
 public slots:
     void carsClassManage(bool) ;
     void addOneDayWork(bool)  ;
@@ -31,6 +32,8 @@ public slots:
     void peopleManage(bool)  ;
 
 
+protected:
+    void resizeEvent(QResizeEvent *event);
 
 
 private slots:
