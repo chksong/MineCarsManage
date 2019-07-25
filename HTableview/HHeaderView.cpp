@@ -1,4 +1,4 @@
-#include <QPainter>
+﻿#include <QPainter>
 #include <QMouseEvent>
 #include <QIcon>
 #include <QCursor>
@@ -61,22 +61,24 @@ HHeaderView::~HHeaderView()
 
 void HHeaderView::initHeaderView(HHeaderModel *pModel)
 {
-    //! 设置各个独立单元格Item
-    pModel->setItem(0,0, QObject::tr("gold"));
-    pModel->setItem(0,2, QObject::tr("silver"));
-    pModel->setItem(0,4, QObject::tr("copper"));
+//    //! 设置各个独立单元格Item
+//    pModel->setItem(0,0, QObject::tr("gold"));
+//    pModel->setItem(0,2, QObject::tr("silver"));
+//    pModel->setItem(0,4, QObject::tr("copper"));
 
-    pModel->setItem(1,0, QObject::tr("gold one"));
-    pModel->setItem(1,1, QObject::tr("gold two"));
-    pModel->setItem(1,2, QObject::tr("silver one"));
-    pModel->setItem(1,3, QObject::tr("silver two"));
-    pModel->setItem(1,4, QObject::tr("copper one"));
-    pModel->setItem(1,5, QObject::tr("copper two"));
+//    pModel->setItem(1,0, QObject::tr("gold one"));
+//    pModel->setItem(1,1, QObject::tr("gold two"));
+//    pModel->setItem(1,2, QObject::tr("silver one"));
+//    pModel->setItem(1,3, QObject::tr("silver two"));
+//    pModel->setItem(1,4, QObject::tr("copper one"));
+//    pModel->setItem(1,5, QObject::tr("copper two"));
 
-    //! 设置合并单元格
-    pModel->setSpan(0,0,1,2);
-    pModel->setSpan(0,2,1,2);
-    pModel->setSpan(0,4,1,2);
+//    //! 设置合并单元格
+//    pModel->setSpan(0,0,1,2);
+//    pModel->setSpan(0,2,1,2);
+//    pModel->setSpan(0,4,1,2);
+
+
 
 }
 

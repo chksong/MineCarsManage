@@ -3,12 +3,11 @@
 
 TcTabelModel::TcTabelModel(QObject *parent) : QAbstractTableModel(parent)
 {
-    m_headerList<<"hahha"<<"bibibi"<<"cicic"<<"dididi"<<"eieiei"<<"fififi";
+    m_headerList<<"hahha"<<"bibibi"<<"cicic"<<"dididi"<<"eieiei"<<"fififi"  <<"hahha"<<"bibibi"<<"cicic"<<"dididi"<<"eieiei"<<"fififi" << "cicic"<<"dididi"<<"eieiei"<<"fififi";
 
     QStringList rowListOne,rowListTwo;
-	rowListOne << "123" << "123" << "123" << "234" << "345" << "456" << "ddddddd" << "345" << "456" << "ddddddd";;
-	rowListTwo << "234" << "345" << "456" << "123" << "123" << "123"  << "345" << "456" << "ddddddd";;
-
+    rowListOne << "123" << "123" << "123" << "234" << "345" << "456" << "ddddddd" << "aaaa" << "bbb" << "eee"  << "fff" << "ggg" << "hhhhh" << "iiiiii" <<   "ggg" << "kkkk" << "llll";
+    rowListTwo << "123" << "123" << "123" << "234" << "345" << "456" << "ddddddd" << "345" << "456" << "ddddddd"  << "ddddddd" << "345" << "456" << "ddddddd";
     m_data.insert("testOne",rowListOne);
     m_data.insert("testTwo",rowListTwo);
 }
