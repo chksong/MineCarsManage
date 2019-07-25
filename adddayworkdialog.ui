@@ -6,14 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>607</width>
-    <height>711</height>
+    <width>604</width>
+    <height>671</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>挖掘机每日工作录入</string>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout_5">
+  <layout class="QVBoxLayout" name="verticalLayout_5" stretch="2,5,2,4,1">
+   <property name="topMargin">
+    <number>9</number>
+   </property>
+   <property name="bottomMargin">
+    <number>9</number>
+   </property>
    <item>
     <widget class="QGroupBox" name="groupBox_2">
      <property name="title">
@@ -402,6 +408,9 @@
       <string>总结信息</string>
      </property>
      <layout class="QVBoxLayout" name="verticalLayout_4">
+      <property name="bottomMargin">
+       <number>6</number>
+      </property>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_33" stretch="1,1">
         <property name="spacing">
@@ -490,6 +499,12 @@
       </item>
       <item>
        <widget class="QTextEdit" name="textEdit_comment">
+        <property name="maximumSize">
+         <size>
+          <width>16777215</width>
+          <height>40</height>
+         </size>
+        </property>
         <property name="placeholderText">
          <string>请输出备注</string>
         </property>
@@ -500,6 +515,9 @@
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_37">
+     <property name="bottomMargin">
+      <number>5</number>
+     </property>
      <item>
       <spacer name="horizontalSpacer_3">
        <property name="orientation">

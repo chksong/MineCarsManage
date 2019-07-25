@@ -74,7 +74,7 @@ void AddDayWorkDialog::on_PB_ADD_clicked()
 
 //   auto strSql = QString("date = '%1' and carid = '%2'").arg(strDateadd).arg(ui->lin->text());
  // auto strSql = QString("name = '%1'").arg(strCarClass)  ;
-QString strSql  ;
+    QString strSql  ;
     modelQuery->setFilter(strSql);
     modelQuery->select();
     auto curRows = modelQuery->rowCount();
@@ -125,8 +125,6 @@ QString strSql  ;
     model->setData(model->index(rowNum,22), ui->doubleSpinBox_materials->value());       //材料费
     model->setData(model->index(rowNum,23), ui->doubleSpinBox_repair->value());       //修理费
     model->setData(model->index(rowNum,24), ui->textEdit_comment->toPlainText());       //修理费
-
-
 
 
     bool ret = model->submitAll()  ;

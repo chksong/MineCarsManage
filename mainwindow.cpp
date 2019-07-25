@@ -9,6 +9,7 @@
 #include <QDebug>
 #include <QSqlTableModel>
 #include <QResizeEvent>
+#include <QDesktopWidget>
 
 #include "HTableview/HHeaderModel.h"
 #include "HTableview/HHeaderView.h"
@@ -16,12 +17,19 @@
 
 
 
+HHeaderView *pHeadView = nullptr  ;
+
+
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    resize(1024,768);
+
+    QRect deskRect = QApplication::desktop()->availableGeometry();
+    this->setGeometry(deskRect);
+
+//    resize(1024,768);
 
     dlgCarsClass = nullptr    ;
 
@@ -94,14 +102,14 @@ void MainWindow::initTable()
 //       //! 为表格内部(不是表头)设置数据的model
 //    ui->tableView->setModel(pModel);
 
-  //  ui->tableView->setModel(model);
+    ui->tableView->setModel(model);
   //  ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); //使其不可编辑
     ui->tableView->setColumnHidden(0, true);
     ui->tableView->setColumnHidden(2, true);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
 
 
-    initHeadView(ui->tableView) ;
+   initHeadView(ui->tableView) ;
 
 
 
@@ -113,7 +121,7 @@ void MainWindow::initTable()
 
 void MainWindow::initHeadView(QTableView *pTableView)
 {
-    HHeaderView *pHeadView = new HHeaderView(Qt::Horizontal);
+    pHeadView = new HHeaderView(Qt::Horizontal);
     HHeaderModel *pModel = new HHeaderModel();
 
     pModel->setItem(0,0, QStringLiteral("车号"));
@@ -155,27 +163,35 @@ void MainWindow::initHeadView(QTableView *pTableView)
     pModel->setItem(2,12, QStringLiteral("吨数"));
 
 
-
+    pModel->setItem(0,13, QStringLiteral("日工时数"));
+    pModel->setSpan(0,13,1,3);
     pModel->setItem(1,13, QStringLiteral(""));
     pModel->setItem(2,13, QStringLiteral("工作地点"));
     pModel->setItem(1,14, QStringLiteral(""));
     pModel->setItem(2,14, QStringLiteral("工作类型"));
-
-//    pModel->setItem(1,0, QObject::tr("gold one"));
-//    pModel->setItem(1,1, QObject::tr("gold two"));
-//    pModel->setItem(1,2, QObject::tr("silver one"));
-//    pModel->setItem(1,3, QObject::tr("silver two"));
-//    pModel->setItem(1,4, QObject::tr("copper one"));
-//    pModel->setItem(1,5, QObject::tr("copper two"));
+    pModel->setItem(1,15, QStringLiteral(""));
+    pModel->setItem(2,15, QStringLiteral("工时数"));
 
 
-   // pModel->setSpan(0,4,1,2);
-  //  pHeadView->initHeaderView(pModel);
+    pModel->setItem(0,16, QStringLiteral("工作时长"));
+    pModel->setSpan(0,16,3,1);
+
+    pModel->setItem(0,17, QStringLiteral("柴油用量"));
+    pModel->setSpan(0,17,3,1);
+
+    pModel->setItem(0,18, QStringLiteral("材料费"));
+    pModel->setSpan(0,18,3,1);
+
+    pModel->setItem(0,19 ,QStringLiteral("修理费"));
+    pModel->setSpan(0,19,3,1);
+
+
 
     pHeadView->setModel(pModel);
+
+    pHeadView->setAutoScroll(true) ;
     pTableView->setHorizontalHeader(pHeadView);
-   // pTableView->horizontalHeader().set
-   //  pHeadView.re
+
 }
 
 
@@ -231,8 +247,16 @@ void MainWindow::resizeEvent(QResizeEvent *event)
     ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     auto gtable = ui->tableView->geometry(); ;
     auto ghead = ui->tableView->horizontalHeader()->geometry() ;
-    ghead.setWidth(gtable.width()) ;
-    ui->tableView->horizontalHeader()->setGeometry(ghead) ;
-    ui->tableView->horizontalHeader()->update() ;
+    auto tmp = pHeadView->geometry();
+
+   // pHeadView2->setGeometry(ghead) ;
+    int xx35 =1 ;
+
+
+//    ghead.setWidth(gtable.width()) ;
+//    ui->tableView->horizontalHeader()->setGeometry(ghead) ;
+//    ui->tableView->horizontalHeader()->update() ;
+
+
 }
 

@@ -20,20 +20,20 @@ HHeaderView::HHeaderView(Qt::Orientation orientation, QWidget * parent) : QHeade
 
     connect(this, SIGNAL(sectionResized(int,int,int)), this, SLOT(onSectionResized(int,int,int)));
     //! 交互式，代表支持鼠标拖动
-    setSectionResizeMode(QHeaderView::Interactive);
-    //setSectionResizeMode(QHeaderView::Stretch);
+ //   setSectionResizeMode(QHeaderView::Interactive);
+    setSectionResizeMode(QHeaderView::ResizeToContents);
     setCascadingSectionResizes(true);
 
-    this->setOffset(0);    //! 这将会影响item绘制的位置
+//    this->setOffset(0);    //! 这将会影响item绘制的位置
     setSectionsMovable(true);
     setSectionsClickable(true);
-    setMinimumSectionSize(80);
+    setMinimumSectionSize(70);
     setStretchLastSection(true);
-    setHighlightSections(false);
-    setMouseTracking(false);
+    setHighlightSections(true);
+    setMouseTracking(true);
 
-    setAttribute(Qt::WA_Hover, false);
-    setDefaultSectionSize(100);
+    setAttribute(Qt::WA_Hover, true);
+  //  setDefaultSectionSize(100);
 
     m_menu = new QMenu(this);
     m_actHideCol = new QAction(this);
