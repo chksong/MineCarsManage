@@ -28,6 +28,12 @@ CONFIG += c++11
 
 
 SOURCES += \
+        HTableview/HHeaderItemDelegate.cpp \
+        HTableview/HHeaderModel.cpp \
+        HTableview/HHeaderView.cpp \
+        HTableview/TcTabelModel.cpp \
+        HTableview/TcTableView.cpp \
+        HTableview/TcTableWidget.cpp \
         adddayworkdialog.cpp \
         carsclassdialog.cpp \
         carsmanagedialog.cpp \
@@ -37,6 +43,12 @@ SOURCES += \
         peopledialog.cpp
 
 HEADERS += \
+        HTableview/HHeaderItemDelegate.h \
+        HTableview/HHeaderModel.h \
+        HTableview/HHeaderView.h \
+        HTableview/TcTabelModel.h \
+        HTableview/TcTableView.h \
+        HTableview/TcTableWidget.h \
         adddayworkdialog.h \
         carsclassdialog.h \
         carsmanagedialog.h \
@@ -45,6 +57,7 @@ HEADERS += \
         peopledialog.h
 
 FORMS += \
+        HTableview/TcTableWidget.ui \
         adddayworkdialog.ui \
         carsclassdialog.ui \
         carsmanagedialog.ui \
