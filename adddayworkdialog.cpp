@@ -9,6 +9,43 @@
 #include <QMessageBox>
 #include <QSqlQuery>
 
+
+
+//重建Map与ID的映射表
+void AddDayWorkDialog::reloadNameIDSMapByCarName(const QString &strCar)
+{
+    int carid = mMapCars_ID[strCar] ;
+    mMapPeople_ID.clear() ;
+    ui->comboBox_people->clear() ;
+    ui->comboBox_people->clearEditText() ;
+
+    QString strSql = QString("select name,id from tb_people where carid='%1'")
+            .arg(carid) ;
+
+    QSqlQuery  query ;
+    query.exec(strSql) ;
+    while (query.next()) {
+        mMapPeople_ID.insert(query.value(0).toString(),  query.value(1).toInt());
+
+        ui->comboBox_people->addItem(query.value(0).toString()) ;
+    }
+}
+
+void AddDayWorkDialog::reloadAllMapIDS()
+{
+    QSqlQuery  query ;
+    mMapCars_ID.clear() ;
+    query.exec("select name,id from tb_cars") ;
+    while (query.next()) {
+        mMapCars_ID.insert(query.value(0).toString(),  query.value(1).toInt());
+        ui->comboBox_cardid->addItem(query.value(0).toString()) ;
+    }
+
+    if(mMapCars_ID.size() >0) {
+         reloadNameIDSMapByCarName(mMapCars_ID.firstKey());
+    }
+}
+
 AddDayWorkDialog::AddDayWorkDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AddDayWorkDialog)
@@ -25,12 +62,7 @@ AddDayWorkDialog::AddDayWorkDialog(QWidget *parent) :
     ui->dateEdit_add->setDate(QDateTime::currentDateTime().date()) ;
 
     //添加车的ID
-    QSqlQuery  query ;
-    query.exec("select name,id from tb_cars") ;
-    while (query.next()) {
-        mMapCars_ID.insert(query.value(0).toString(),  query.value(1).toInt());
-        ui->comboBox_cardid->addItem(query.value(0).toString()) ;
-    }
+    reloadAllMapIDS();
 
 
 }
@@ -61,20 +93,22 @@ void AddDayWorkDialog::on_PB_CANCLE_clicked()
 
 void AddDayWorkDialog::on_PB_ADD_clicked()
 {
-    if(!checkValidCtrl()) {
+    // 检验失败
+    if(false == checkValidCtrl()) {
         return;
     }
 
 
     QSqlTableModel *modelQuery = new QSqlTableModel(this);
     modelQuery->setTable("tb_carswork");
-
     QString strDateadd = ui->dateEdit_add->date().toString("yyyy-MM-dd") ;
 
+   //同一天，同一车，同一个人只能有一次
+   auto strSql = QString("date = '%1' and carid = '%2' and peopleid = '%3'")
+           .arg(strDateadd)
+           .arg(ui->comboBox_cardid->currentText())
+           .arg(ui->comboBox_people->currentText()) ;
 
-//   auto strSql = QString("date = '%1' and carid = '%2'").arg(strDateadd).arg(ui->lin->text());
- // auto strSql = QString("name = '%1'").arg(strCarClass)  ;
-    QString strSql  ;
     modelQuery->setFilter(strSql);
     modelQuery->select();
     auto curRows = modelQuery->rowCount();
@@ -90,8 +124,10 @@ void AddDayWorkDialog::on_PB_ADD_clicked()
     model->insertRow(rowNum); //添加一行
     model->setData(model->index(rowNum,1), strDateadd);   // 工作日期
     model->setData(model->index(rowNum,2), QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss")) ;  //添加的日期
-  //  model->setData(model->index(rowNum,3), ui->lineEdit_cardid->text());                // 车的ID
- //   model->setData(model->index(rowNum,4), ui->comboBox_carclass->currentText());       //车的类型
+
+    int carID = mMapCars_ID[ui->comboBox_cardid->currentText()];
+    model->setData(model->index(rowNum,3), carID);                // 车的ID
+
 
     model->setData(model->index(rowNum,5), ui->comboBox_people->currentText());         //员工信息
     model->setData(model->index(rowNum,6), ui->doubleSpinBox_hoursOfMonth->value());    //月初小时候数
@@ -141,9 +177,14 @@ void AddDayWorkDialog::on_PB_ADD_clicked()
 
 
 
-
+//检验 输入的车号，以及员工号的ID 不能为空
 bool AddDayWorkDialog::checkValidCtrl()
 {
+    if( ui->comboBox_cardid->currentText().length() == 0
+            || ui->comboBox_people->currentText() == 0 )
+    {
+
+    }
 
     return  true ;
 }
@@ -160,14 +201,5 @@ void AddDayWorkDialog::on_comboBox_cardid_currentTextChanged(const QString &arg1
     mMapPeople_ID.clear() ;
     ui->comboBox_people->clear();
 
-    //添加员工姓名
-    QSqlQuery  query ;
-
-    QString strSql =  QString("select name ,id from tb_people where carid='%1'")
-                            .arg(mMapCars_ID[arg1]);
-    query.exec(strSql) ;
-    while (query.next()) {
-        mMapPeople_ID.insert(query.value(0).toString(),  query.value(1).toInt());
-        ui->comboBox_people->addItem(query.value(0).toString()) ;
-    }
+    reloadNameIDSMapByCarName(arg1) ;
 }
