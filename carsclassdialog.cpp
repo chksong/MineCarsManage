@@ -141,3 +141,26 @@ void CarsClassDialog::on_pushButton_cancle_modify_clicked()
 {
       model->revertAll();
 }
+
+
+
+
+void CarsClassDialog::keyPressEvent(QKeyEvent *event)
+{
+    switch(event->key())
+      {
+        case Qt::Key_Escape:
+            {
+                QWidget *comboBox = ui->tableView->indexWidget(lastModeIndex) ;
+                if( nullptr != comboBox)
+                {
+                    ui->tableView->setIndexWidget(lastModeIndex,nullptr) ;
+                    delete  comboBox ;
+                }
+            }
+          break;
+       default:
+          QWidget::keyPressEvent(event);
+      }
+
+}
