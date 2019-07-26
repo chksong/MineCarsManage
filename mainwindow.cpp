@@ -11,6 +11,9 @@
 #include <QResizeEvent>
 #include <QDesktopWidget>
 
+#include <QGuiApplication>
+#include <QScreen>
+
 #include "HTableview/HHeaderModel.h"
 #include "HTableview/HHeaderView.h"
 #include "HTableview/TcTabelModel.h"
@@ -26,10 +29,13 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-    QRect deskRect = QApplication::desktop()->availableGeometry();
-    this->setGeometry(deskRect);
+//    旧有的API
+//    QRect deskRect = QApplication::desktop()->screenGeometry();
+//    this->setGeometry(deskRect);
 
-//    resize(1024,768);
+    //新的API
+      setGeometry( QGuiApplication::primaryScreen()->geometry()) ;
+
 
     dlgCarsClass = nullptr    ;
 
