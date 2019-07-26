@@ -9,7 +9,7 @@
 #include <QMessageBox>
 #include <QMap>
 #include <QSqlRelation>
-
+#include <QDebug>
 
 
 PeopleDialog::PeopleDialog(QWidget *parent) :
@@ -172,17 +172,16 @@ void  PeopleDialog::doubleClicked(QModelIndex modleIndex)
     QComboBox *comboBox  = new QComboBox(this) ;
     ui->tableView->setIndexWidget(modleIndex,comboBox) ;
 
-   int carID  = model->data(modleIndex).toInt() ;
+    QString  strKey;
+
+    QString carID  = model->data(modleIndex).toString() ;
     QMap<QString, int>::iterator iter = mMapCars_ID.begin();
     while (iter != mMapCars_ID.end()) {
         comboBox->addItem(iter.key()) ;
-
-        if(carID == iter.value()) {
-            comboBox->setCurrentText(iter.key())  ;
-        }
         ++iter ;
     }
 
+    comboBox->setCurrentText(carID)  ;
     lastModeIndex = modleIndex ;
 }
 
