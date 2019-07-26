@@ -177,17 +177,14 @@ void  CarsManageDialog::doubleClicked(QModelIndex modleIndex)
     QComboBox *comboBox  = new QComboBox(this) ;
     ui->tableView->setIndexWidget(modleIndex,comboBox) ;
 
-   int carclassID  = model->data(modleIndex).toInt() ;
+    auto strcarclass  = model->data(modleIndex).toString() ;
     QMap<QString, int>::iterator iter = mMapCarCalss_ID.begin();
     while (iter != mMapCarCalss_ID.end()) {
         comboBox->addItem(iter.key()) ;
-
-        if(carclassID == iter.value()) {
-            comboBox->setCurrentText(iter.key())  ;
-        }
         ++iter ;
     }
 
+    comboBox->setCurrentText(strcarclass)  ;
     lastModeIndex = modleIndex ;
 }
 
@@ -200,5 +197,28 @@ void CarsManageDialog::clicked(QModelIndex modleIndex)
         ui->tableView->setIndexWidget(lastModeIndex,nullptr) ;
         delete  comboBox ;
     }
+
+}
+
+
+
+
+void CarsManageDialog::keyPressEvent(QKeyEvent *event)
+{
+    switch(event->key())
+      {
+        case Qt::Key_Escape:
+            {
+                QWidget *comboBox = ui->tableView->indexWidget(lastModeIndex) ;
+                if( nullptr != comboBox)
+                {
+                    ui->tableView->setIndexWidget(lastModeIndex,nullptr) ;
+                    delete  comboBox ;
+                }
+            }
+          break;
+       default:
+          QWidget::keyPressEvent(event);
+      }
 
 }
