@@ -111,7 +111,6 @@ bool MysqlDBHelp::initTables()
            FOREIGN KEY(carid) REFERENCES tb_cars(id) ,\
           `peopleid` int(11) NOT NULL,        \
            FOREIGN KEY(peopleid) REFERENCES tb_people(id) ,\
-          `hoursOfMonth` int(11) DEFAULT NULL,       \
           `rz_where` varchar(100) DEFAULT NULL,     \
           `rz_type` varchar(50) DEFAULT NULL,       \
           `yk_carnums` int(11) DEFAULT NULL,        \
