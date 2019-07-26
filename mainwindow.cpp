@@ -104,22 +104,20 @@ void MainWindow::initTable()
     model->setHeaderData(23, Qt::Horizontal, QStringLiteral("修理费"));
     model->setHeaderData(24, Qt::Horizontal, QStringLiteral("备注"));
 
-//    TcTabelModel *pModel = new TcTabelModel();
-//       //! 为表格内部(不是表头)设置数据的model
-//    ui->tableView->setModel(pModel);
+
 
     ui->tableView->setModel(model);
   //  ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); //使其不可编辑
     ui->tableView->setColumnHidden(0, true);
+	ui->tableView->setColumnHidden(1, true);
     ui->tableView->setColumnHidden(2, true);
     ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
 
 
-   initHeadView(ui->tableView) ;
+	initHeadView(ui->tableView);
 
 
-
- //   model->select(); //选取整个表的所有行
+ //  model->select(); //选取整个表的所有行
 
 }
 
