@@ -37,7 +37,7 @@
          <item>
           <widget class="QLabel" name="label_2">
            <property name="text">
-            <string>员工：</string>
+            <string>车号：</string>
            </property>
           </widget>
          </item>
