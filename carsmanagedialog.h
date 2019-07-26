@@ -1,4 +1,4 @@
-#ifndef CARSMANAGEDIALOG_H
+﻿#ifndef CARSMANAGEDIALOG_H
 #define CARSMANAGEDIALOG_H
 
 #include <QDialog>
@@ -6,7 +6,7 @@
 #include <QSqlRelationalTableModel>
 #include <QMap>
 #include <QModelIndex>
-
+#include <QKeyEvent>
 
 namespace Ui {
 class CarsManageDialog;
@@ -19,6 +19,8 @@ class CarsManageDialog : public QDialog
 public:
     explicit CarsManageDialog(QWidget *parent = nullptr);
     ~CarsManageDialog();
+
+    void keyPressEvent(QKeyEvent *event) ;
 
 private slots:
     void on_PB_ADD_clicked();

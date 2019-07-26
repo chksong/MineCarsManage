@@ -5,6 +5,8 @@
 
 
 #include <QSqlTableModel>
+#include <QKeyEvent>
+#include <QModelIndex>
 
 
 namespace Ui {
@@ -18,6 +20,9 @@ class CarsClassDialog : public QDialog
 public:
     explicit CarsClassDialog(QWidget *parent = nullptr);
     ~CarsClassDialog();
+
+    void keyPressEvent(QKeyEvent *event) ;
+
 
 private slots:
     void on_pushButton_clicked();
@@ -35,6 +40,7 @@ private:
     Ui::CarsClassDialog *ui;
 
     QSqlTableModel  *model;
+    QModelIndex  lastModeIndex ; //上次点击的
 };
 
 #endif // CARSCLASSDIALOG_H
