@@ -20,34 +20,34 @@ HHeaderView::HHeaderView(Qt::Orientation orientation, QWidget * parent) : QHeade
 
     connect(this, SIGNAL(sectionResized(int,int,int)), this, SLOT(onSectionResized(int,int,int)));
     //! 交互式，代表支持鼠标拖动
- //   setSectionResizeMode(QHeaderView::Interactive);
- //   setSectionResizeMode(QHeaderView::ResizeToContents);
- //    setCascadingSectionResizes(true);
+    setSectionResizeMode(QHeaderView::Interactive);
+ //   setSectionResizeMode(QHeaderView::Stretch);
+    setCascadingSectionResizes(true);
 
-//    this->setOffset(0);    //! 这将会影响item绘制的位置
+    this->setOffset(0);    //! 这将会影响item绘制的位置
     setSectionsMovable(true);
     setSectionsClickable(true);
-    setMinimumSectionSize(70);
+    setMinimumSectionSize(60);
     setStretchLastSection(true);
-    setHighlightSections(true);
-    setMouseTracking(true);
+    setHighlightSections(false);
+    setMouseTracking(false);
 
     setAttribute(Qt::WA_Hover, true);
-  //  setDefaultSectionSize(100);
+//    setDefaultSectionSize(100);
 
-    m_menu = new QMenu(this);
-    m_actHideCol = new QAction(this);
-    m_actHideCol->setText("hide column");
-    m_actsortUp = new QAction(this);
-    m_actsortUp->setText("sort A->Z");
-    m_actSortDown = new QAction(this);
-    m_actSortDown->setText("sort Z->A");
+//    m_menu = new QMenu(this);
+//    m_actHideCol = new QAction(this);
+//    m_actHideCol->setText("hide column");
+//    m_actsortUp = new QAction(this);
+//    m_actsortUp->setText("sort A->Z");
+//    m_actSortDown = new QAction(this);
+//    m_actSortDown->setText("sort Z->A");
 
-    m_menu->addAction(m_actHideCol);
-    m_menu->addAction(m_actsortUp);
-    m_menu->addAction(m_actSortDown);
+//    m_menu->addAction(m_actHideCol);
+//    m_menu->addAction(m_actsortUp);
+//    m_menu->addAction(m_actSortDown);
 
-    m_menu->hide();
+//    m_menu->hide();
 }
 
 HHeaderView::~HHeaderView()
@@ -61,24 +61,86 @@ HHeaderView::~HHeaderView()
 
 void HHeaderView::initHeaderView(HHeaderModel *pModel)
 {
-//    //! 设置各个独立单元格Item
-//    pModel->setItem(0,0, QObject::tr("gold"));
-//    pModel->setItem(0,2, QObject::tr("silver"));
-//    pModel->setItem(0,4, QObject::tr("copper"));
+    //! 设置各个独立单元格Item
+    //!
+    /*
+    pModel->setItem(0,0, QObject::tr("gold"));
+    pModel->setItem(0,2, QObject::tr("silver"));
+    pModel->setItem(0,4, QObject::tr("copper"));
 
-//    pModel->setItem(1,0, QObject::tr("gold one"));
-//    pModel->setItem(1,1, QObject::tr("gold two"));
-//    pModel->setItem(1,2, QObject::tr("silver one"));
-//    pModel->setItem(1,3, QObject::tr("silver two"));
-//    pModel->setItem(1,4, QObject::tr("copper one"));
-//    pModel->setItem(1,5, QObject::tr("copper two"));
+    pModel->setItem(1,0, QObject::tr("gold one"));
+    pModel->setItem(1,1, QObject::tr("gold two"));
+    pModel->setItem(1,2, QObject::tr("silver one"));
+    pModel->setItem(1,3, QObject::tr("silver two"));
+    pModel->setItem(1,4, QObject::tr("copper one"));
+    pModel->setItem(1,5, QObject::tr("copper two"));
 
-//    //! 设置合并单元格
-//    pModel->setSpan(0,0,1,2);
-//    pModel->setSpan(0,2,1,2);
-//    pModel->setSpan(0,4,1,2);
+    //! 设置合并单元格
+    pModel->setSpan(0,0,1,2);
+    pModel->setSpan(0,2,1,2);
+    pModel->setSpan(0,4,1,2);*/
 
 
+    pModel->setItem(0,0, QStringLiteral("车号"));
+       pModel->setItem(0,1, QStringLiteral("品牌型号"));
+       pModel->setItem(0,2, QStringLiteral("月初小时数"));
+
+       pModel->setSpan(0,0,3,1);  // 车号
+       pModel->setSpan(0,1,3,1);  // 品牌型号
+       pModel->setSpan(0,2,3,1);  // 品牌型号
+
+       pModel->setItem(0,3, QStringLiteral("日装矿量"));
+       pModel->setSpan(0,3,1,10);
+
+       pModel->setItem(1,3, QStringLiteral(""));
+       pModel->setItem(2,3, QStringLiteral("工作地点"));
+       pModel->setItem(1,4, QStringLiteral(""));
+       pModel->setItem(2,4, QStringLiteral("工作类型"));
+
+
+
+       pModel->setItem(1,5, QStringLiteral("原铁矿"));
+       pModel->setSpan(1,5,1,2); // 原铁矿
+       pModel->setItem(2,5, QStringLiteral("车数"));
+       pModel->setItem(2,6, QStringLiteral("吨数"));
+
+       pModel->setItem(1,7, QStringLiteral("细铁矿"));
+       pModel->setSpan(1,7,1,2);
+       pModel->setItem(2,7, QStringLiteral("车数"));
+       pModel->setItem(2,8, QStringLiteral("吨数"));
+
+       pModel->setItem(1,9, QStringLiteral("尾矿"));
+       pModel->setSpan(1,9,1,2);
+       pModel->setItem(2,9, QStringLiteral("车数"));
+       pModel->setItem(2,10, QStringLiteral("吨数"));
+
+       pModel->setItem(1,11, QStringLiteral("剥岩"));
+       pModel->setSpan(1,11,1,2);
+       pModel->setItem(2,11, QStringLiteral("车数"));
+       pModel->setItem(2,12, QStringLiteral("吨数"));
+
+
+       pModel->setItem(0,13, QStringLiteral("日工时数"));
+       pModel->setSpan(0,13,1,3);
+       pModel->setItem(1,13, QStringLiteral(""));
+       pModel->setItem(2,13, QStringLiteral("工作地点"));
+       pModel->setItem(1,14, QStringLiteral(""));
+       pModel->setItem(2,14, QStringLiteral("工作类型"));
+       pModel->setItem(1,15, QStringLiteral(""));
+       pModel->setItem(2,15, QStringLiteral("工时数"));
+
+
+       pModel->setItem(0,16, QStringLiteral("工作时长"));
+       pModel->setSpan(0,16,3,1);
+
+       pModel->setItem(0,17, QStringLiteral("柴油用量"));
+       pModel->setSpan(0,17,3,1);
+
+       pModel->setItem(0,18, QStringLiteral("材料费"));
+       pModel->setSpan(0,18,3,1);
+
+       pModel->setItem(0,19 ,QStringLiteral("修理费"));
+       pModel->setSpan(0,19,3,1);
 
 }
 
@@ -128,7 +190,7 @@ void HHeaderView::paintEvent(QPaintEvent *event)
 {
     Q_UNUSED(event)
     QPainter painter(viewport());
-    QMultiMap<int, int> rowSpanList;
+   QMultiMap<int, int> rowSpanList;
 
     int cnt = this->count ();
     int curRow, curCol;

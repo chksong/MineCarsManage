@@ -37,6 +37,7 @@ SOURCES += \
         adddayworkdialog.cpp \
         carsclassdialog.cpp \
         carsmanagedialog.cpp \
+        dialoghelp.cpp \
         main.cpp \
         mainwindow.cpp \
         mysqldbhelp.cpp \
@@ -52,6 +53,7 @@ HEADERS += \
         adddayworkdialog.h \
         carsclassdialog.h \
         carsmanagedialog.h \
+        dialoghelp.h \
         mainwindow.h \
         mysqldbhelp.h \
         peopledialog.h
@@ -61,6 +63,7 @@ FORMS += \
         adddayworkdialog.ui \
         carsclassdialog.ui \
         carsmanagedialog.ui \
+        dialoghelp.ui \
         mainwindow.ui \
         peopledialog.ui
 

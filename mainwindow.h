@@ -31,6 +31,8 @@ public slots:
     void carsManage(bool)  ;
     void peopleManage(bool)  ;
 
+    void dohelp() ;
+
 
 protected:
     void resizeEvent(QResizeEvent *event);

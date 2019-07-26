@@ -14,6 +14,8 @@
 #include <QGuiApplication>
 #include <QScreen>
 
+#include "dialoghelp.h"
+
 #include "HTableview/HHeaderModel.h"
 #include "HTableview/HHeaderView.h"
 #include "HTableview/TcTabelModel.h"
@@ -32,9 +34,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //    旧有的API
 //    QRect deskRect = QApplication::desktop()->screenGeometry();
 //    this->setGeometry(deskRect);
-
-    //新的API
-      setGeometry( QGuiApplication::primaryScreen()->geometry()) ;
+    setGeometry( QGuiApplication::primaryScreen()->geometry()) ;
 
 
     dlgCarsClass = nullptr    ;
@@ -44,13 +44,12 @@ MainWindow::MainWindow(QWidget *parent) :
     initTable() ;
 
 
-  //  ui->menuBar->addAction("日期",this,&MainWindow::peopleManage) ;
-
     // 关联按钮
     connect(ui->actionCarsClass, &QAction::triggered , this ,&MainWindow::carsClassManage) ;
     connect(ui->actionAddOneDay, &QAction::triggered, this,  &MainWindow::addOneDayWork)  ;
     connect(ui->actionCarsManag, &QAction::triggered, this,  &MainWindow::carsManage) ;
     connect(ui->actionPeople ,   &QAction::triggered ,this,  &MainWindow::peopleManage )  ;
+    connect(ui->actionhelp,      &QAction::triggered ,this, &MainWindow::dohelp) ;
 
 
 
@@ -71,53 +70,20 @@ void MainWindow::initTable()
     model->setEditStrategy(QSqlTableModel::OnManualSubmit);
 
 
-  //  model->setHeaderData(0, Qt::Horizontal, "ID");
-    model->setHeaderData(1, Qt::Horizontal, QStringLiteral("日期"));
-    model->setHeaderData(3, Qt::Horizontal, QStringLiteral("车号"));
-    model->setHeaderData(4, Qt::Horizontal, QStringLiteral("品牌类型"));
-    model->setHeaderData(5, Qt::Horizontal, QStringLiteral("员工号"));
-    model->setHeaderData(6, Qt::Horizontal, QStringLiteral("月初小时数"));
-
-    model->setHeaderData(7, Qt::Horizontal, QStringLiteral("日装 工作地点"));
-    model->setHeaderData(8, Qt::Horizontal, QStringLiteral("日装 工作类型"));
-
-    model->setHeaderData(9, Qt::Horizontal, QStringLiteral("铁原矿车数"));
-    model->setHeaderData(10, Qt::Horizontal, QStringLiteral("铁原矿吨数"));
-
-    model->setHeaderData(11, Qt::Horizontal, QStringLiteral("细矿石车数"));
-    model->setHeaderData(12, Qt::Horizontal, QStringLiteral("细矿石吨数"));
-
-    model->setHeaderData(13, Qt::Horizontal, QStringLiteral("尾矿车数"));
-    model->setHeaderData(14, Qt::Horizontal, QStringLiteral("尾矿吨数"));
-
-    model->setHeaderData(15, Qt::Horizontal, QStringLiteral("剥岩车数"));
-    model->setHeaderData(16, Qt::Horizontal, QStringLiteral("剥岩吨数"));
-
-    model->setHeaderData(17, Qt::Horizontal, QStringLiteral("日工工作地点"));
-    model->setHeaderData(18, Qt::Horizontal, QStringLiteral("日工工作类型"));
-    model->setHeaderData(19, Qt::Horizontal, QStringLiteral("日工工时数"));
-
-    model->setHeaderData(20, Qt::Horizontal, QStringLiteral("本日工作时长"));
-
-    model->setHeaderData(21, Qt::Horizontal, QStringLiteral("柴油用量"));
-    model->setHeaderData(22, Qt::Horizontal, QStringLiteral("材料费"));
-    model->setHeaderData(23, Qt::Horizontal, QStringLiteral("修理费"));
-    model->setHeaderData(24, Qt::Horizontal, QStringLiteral("备注"));
 
 
 
-    ui->tableView->setModel(model);
+   // ui->tableView->setModel(model);
   //  ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); //使其不可编辑
-    ui->tableView->setColumnHidden(0, true);
-	ui->tableView->setColumnHidden(1, true);
-    ui->tableView->setColumnHidden(2, true);
-    ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
+ //   ui->tableView->setColumnHidden(0, true);
+   //.	ui->tableView->setColumnHidden(1, true);
+  //  ui->tableView->setColumnHidden(2, true);
+  //  ui->tableView->setSelectionBehavior(QAbstractItemView::SelectRows);
 
 
-	initHeadView(ui->tableView);
+    initHeadView(ui->tableView);
+    model->select(); //选取整个表的所有行
 
-
- //  model->select(); //选取整个表的所有行
 
 }
 
@@ -192,10 +158,8 @@ void MainWindow::initHeadView(QTableView *pTableView)
 
 
     pHeadView->setModel(pModel);
-
     pHeadView->setAutoScroll(true) ;
     pTableView->setHorizontalHeader(pHeadView);
-
 }
 
 
@@ -248,10 +212,10 @@ void MainWindow::on_PB_refresh_clicked()
 
 void MainWindow::resizeEvent(QResizeEvent *event)
 {
-    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
-    auto gtable = ui->tableView->geometry(); ;
-    auto ghead = ui->tableView->horizontalHeader()->geometry() ;
-    auto tmp = pHeadView->geometry();
+//    ui->tableView->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+//    auto gtable = ui->tableView->geometry(); ;
+//    auto ghead = ui->tableView->horizontalHeader()->geometry() ;
+//    auto tmp = pHeadView->geometry();
 
    // pHeadView2->setGeometry(ghead) ;
     int xx35 =1 ;
@@ -264,3 +228,9 @@ void MainWindow::resizeEvent(QResizeEvent *event)
 
 }
 
+
+void MainWindow::dohelp()
+{
+    DialogHelp help ;
+    help.exec() ;
+}
