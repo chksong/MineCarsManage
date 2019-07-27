@@ -33,7 +33,7 @@ HHeaderView::HHeaderView(Qt::Orientation orientation, QWidget * parent) : QHeade
     setMouseTracking(false);
 
     setAttribute(Qt::WA_Hover, true);
-//    setDefaultSectionSize(100);
+    setDefaultSectionSize(80);
 
 //    m_menu = new QMenu(this);
 //    m_actHideCol = new QAction(this);

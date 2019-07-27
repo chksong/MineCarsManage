@@ -4,8 +4,8 @@
 #include <QMainWindow>
 #include <QSqlTableModel>
 #include <QTableView>
-
-
+#include <QTableWidget>
+#include <QMap>
 
 #include "carsclassdialog.h"
 #include "adddayworkdialog.h"
@@ -24,7 +24,9 @@ public:
     ~MainWindow();
 
     void initTable() ;
-    void initHeadView(QTableView *pTableView)  ;
+    void initHeadView(QTableWidget *pTableView)  ;
+    void reloadTableData();
+    void getCarNameTypeByID(quint32 carID ,QString& carType ,QString& carName)  ;
 public slots:
     void carsClassManage(bool) ;
     void addOneDayWork(bool)  ;
@@ -49,7 +51,7 @@ private:
     AddDayWorkDialog*  dlgAddDayWorkDlg  {nullptr} ;
 
     QSqlTableModel  *model{nullptr};
-
+    QMap<int,qulonglong>   mMapRowWithRID ; // 行号 对应数据 行ID
 };
 
 #endif // MAINWINDOW_H

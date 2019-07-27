@@ -124,11 +124,11 @@ void AddDayWorkDialog::on_PB_ADD_clicked()
     model->setData(model->index(rowNum,1), strDateadd);   // 工作日期
     model->setData(model->index(rowNum,2),
                    QDateTime::currentDateTime().toString("yyyy-MM-dd hh:mm:ss")) ;  //添加的日期
-	QString& strCar =  ui->comboBox_cardid->currentText();
+    QString  strCar =  ui->comboBox_cardid->currentText();
     int carID = mMapCars_ID[strCar];
     model->setData(model->index(rowNum,3), carID);     // 车的ID
 
-	QString& strpeople = ui->comboBox_people->currentText();
+    QString  strpeople = ui->comboBox_people->currentText();
     int peopleID = mMapPeople_ID[strpeople];
     model->setData(model->index(rowNum,4), peopleID);   //  peopleID
 
