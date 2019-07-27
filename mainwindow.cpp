@@ -54,6 +54,18 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionPeople ,   &QAction::triggered ,this,  &MainWindow::peopleManage )  ;
     connect(ui->actionhelp,      &QAction::triggered ,this, &MainWindow::dohelp) ;
 
+
+    // 初始化tableWight的右键
+    tableViewRightMenu = new QMenu() ;
+    QAction* editAction = new QAction(QStringLiteral("编辑本行"),this);
+    QAction* deleteAction = new QAction(QStringLiteral("删除本行"),this);
+
+    tableViewRightMenu->addAction(editAction);
+    tableViewRightMenu->addAction(deleteAction);
+
+    connect(editAction ,   &QAction::triggered ,this, &MainWindow::on_menu_edit_clicked )  ;
+    connect(deleteAction,  &QAction::triggered ,this, &MainWindow::on_menu_del_clicked) ;
+
 }
 
 MainWindow::~MainWindow()
@@ -119,9 +131,14 @@ void MainWindow::reloadTableData()
 void MainWindow::initTable()
 {
     ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers); //使其不可编辑
-//    ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->tableWidget->setSelectionBehavior(QAbstractItemView::SelectRows);
     initHeadView(ui->tableWidget);
     reloadTableData();
+
+
+    // 添加右键
+    ui->tableWidget->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(ui->tableWidget, &QTableWidget::customContextMenuRequested,this,&MainWindow::clicked_rightMenu)  ;
     return ;
 }
 
@@ -271,4 +288,32 @@ void MainWindow::dohelp()
 {
     DialogHelp help ;
     help.exec() ;
+}
+
+
+void MainWindow::clicked_rightMenu(const QPoint &pos)
+{
+    QModelIndex index = ui->tableWidget->indexAt(pos);
+    if(nullptr == index.model()) {
+        return ;
+    }
+    else {
+         tableViewRightMenu->exec(QCursor::pos());
+    }
+}
+
+
+void MainWindow::on_menu_del_clicked()
+{
+     QModelIndex index = ui->tableWidget->currentIndex()  ;
+
+}
+
+
+void MainWindow::on_menu_edit_clicked()
+{
+     QModelIndex index = ui->tableWidget->currentIndex()  ;
+
+
+
 }

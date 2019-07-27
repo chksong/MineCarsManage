@@ -6,6 +6,7 @@
 #include <QTableView>
 #include <QTableWidget>
 #include <QMap>
+#include <QMenu>
 
 #include "carsclassdialog.h"
 #include "adddayworkdialog.h"
@@ -33,6 +34,10 @@ public slots:
     void carsManage(bool)  ;
     void peopleManage(bool)  ;
 
+    void on_menu_edit_clicked();
+    void on_menu_del_clicked();
+    void clicked_rightMenu(const QPoint &pos);  //tableview 右键信号槽函数
+
     void dohelp() ;
 
 
@@ -52,6 +57,8 @@ private:
 
     QSqlTableModel  *model{nullptr};
     QMap<int,qulonglong>   mMapRowWithRID ; // 行号 对应数据 行ID
+
+    QMenu * tableViewRightMenu{nullptr}  ;
 };
 
 #endif // MAINWINDOW_H
