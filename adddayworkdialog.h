@@ -32,6 +32,7 @@ public:
     void reloadNameIDSMapByCarName(const QString &strCar);
 
     void EditTableWithID()  ;
+    void SaveEditItemByID()  ;
 
 private slots:
     void on_PB_TEST_clicked();

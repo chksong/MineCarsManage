@@ -96,6 +96,7 @@ void MainWindow::reloadTableData()
     {
         ui->tableWidget->removeRow(i);
     }
+    ui->tableWidget->clear() ;
 
 
     QString str = QString("select * from tb_carswork")  ;
@@ -306,9 +307,9 @@ void MainWindow::on_menu_edit_clicked()
      qlonglong editRowCarID  = mMapRowWithRID[ row] ;
 
      dlgAddDayWorkDlg = new AddDayWorkDialog (this, editRowCarID) ;
-     if( QDialog::Accepted ==dlgAddDayWorkDlg->exec() )
+     dlgAddDayWorkDlg->exec() ;
      {
-
+        reloadTableData();
      }
 
 
@@ -322,6 +323,6 @@ void MainWindow::addOneDayWork(bool var)
     dlgAddDayWorkDlg = new AddDayWorkDialog () ;
     if(QDialog::Accepted  == dlgAddDayWorkDlg->exec() )
     {
-         //model->select(); //选取整个表的所有行
+        reloadTableData();
     }
 }
