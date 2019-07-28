@@ -19,7 +19,7 @@ class AddDayWorkDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit AddDayWorkDialog(QWidget *parent = nullptr);
+    explicit AddDayWorkDialog(QWidget *parent = nullptr, qlonglong work_id = -1);
     ~AddDayWorkDialog();
 
     bool checkValidCtrl() ;
@@ -30,6 +30,8 @@ public:
     void reloadAllMapIDS();
 
     void reloadNameIDSMapByCarName(const QString &strCar);
+
+    void EditTableWithID()  ;
 
 private slots:
     void on_PB_TEST_clicked();
@@ -47,6 +49,8 @@ private:
 
     QMap<QString ,int> mMapCars_ID ;     //车ID和Name的映射表
     QMap<QString ,int> mMapPeople_ID ;   //员工ID和Name的映射表
+
+    qlonglong  edit_tb_carwork_id = {-1};  // 标准ID ；
 };
 
 #endif // ADDDAYWORKDIALOG_H

@@ -56,7 +56,7 @@ private:
     AddDayWorkDialog*  dlgAddDayWorkDlg  {nullptr} ;
 
     QSqlTableModel  *model{nullptr};
-    QMap<int,qulonglong>   mMapRowWithRID ; // 行号 对应数据 行ID
+    QMap<int,qlonglong>   mMapRowWithRID ; // 行号 对应数据 行ID
 
     QMenu * tableViewRightMenu{nullptr}  ;
 };

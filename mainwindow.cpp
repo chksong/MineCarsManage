@@ -15,6 +15,7 @@
 
 #include <QGuiApplication>
 #include <QScreen>
+#include <QDialog>
 
 #include "dialoghelp.h"
 
@@ -246,18 +247,7 @@ void MainWindow::carsClassManage(bool var)
     dlgCarsClass->exec()  ;
 }
 
-// 添加每日工作
-void MainWindow::addOneDayWork(bool var)
-{
- //  https://blog.csdn.net/hebbely/article/details/54285855
- // 模式非模式对话框
 
-    dlgAddDayWorkDlg = new AddDayWorkDialog () ;
-    dlgAddDayWorkDlg->exec() ;
-    {
-         model->select(); //选取整个表的所有行
-    }
-}
 
 // 刷新
 void MainWindow::on_PB_refresh_clicked()
@@ -312,8 +302,26 @@ void MainWindow::on_menu_del_clicked()
 
 void MainWindow::on_menu_edit_clicked()
 {
-     QModelIndex index = ui->tableWidget->currentIndex()  ;
+     auto row  = ui->tableWidget->currentIndex().row()  ;
+     qlonglong editRowCarID  = mMapRowWithRID[ row] ;
+
+     dlgAddDayWorkDlg = new AddDayWorkDialog (this, editRowCarID) ;
+     if( QDialog::Accepted ==dlgAddDayWorkDlg->exec() )
+     {
+
+     }
 
 
+}
+// 添加每日工作
+void MainWindow::addOneDayWork(bool var)
+{
+ //  https://blog.csdn.net/hebbely/article/details/54285855
+ // 模式非模式对话框
 
+    dlgAddDayWorkDlg = new AddDayWorkDialog () ;
+    if(QDialog::Accepted  == dlgAddDayWorkDlg->exec() )
+    {
+         //model->select(); //选取整个表的所有行
+    }
 }

@@ -8,11 +8,11 @@
 #include <QDateTime>
 #include <QMessageBox>
 #include <QSqlQuery>
-
+#include <QStringLiteral>
 
 
 //重建Map与ID的映射表  员工ID，MAP
-void AddDayWorkDialog::reloadNameIDSMapByCarName(const QString &strCar)
+void AddDayWorkDialog::reloadNameIDSMapByCarName(const QString &strCar )
 {
     int carid = mMapCars_ID[strCar] ;
     mMapPeople_ID.clear() ;
@@ -47,23 +47,37 @@ void AddDayWorkDialog::reloadAllMapIDS()
     }
 }
 
-AddDayWorkDialog::AddDayWorkDialog(QWidget *parent) :
-    QDialog(parent),
-    ui(new Ui::AddDayWorkDialog)
+
+// 构造函数
+AddDayWorkDialog::AddDayWorkDialog(QWidget *parent,qlonglong work_id):
+    QDialog(parent), ui(new Ui::AddDayWorkDialog), edit_tb_carwork_id(work_id)
 {
     ui->setupUi(this);
     setAttribute (Qt::WA_DeleteOnClose);
 
-    model = new QSqlTableModel(this);
-    model->setTable("tb_carswork");
-    model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+
+    if ( edit_tb_carwork_id < 0) {  // 正常添加模式
+        model = new QSqlTableModel(this);
+        model->setTable("tb_carswork");
+        model->setEditStrategy(QSqlTableModel::OnManualSubmit);
+        //时间控件初始化当前日期
+        ui->dateEdit_add->setDate(QDateTime::currentDateTime().date()) ;
+        //添加车的ID
+        reloadAllMapIDS();
+    }
+    else {
+        // 更改界面的提示
+        // 对话框 提示可能要修改
+        ui->PB_ADD->setText(QStringLiteral("保存修改")) ;
+        ui->PB_CANCLE->setText(QStringLiteral("取消修改")) ;
+        setWindowTitle("更新工作记录") ;
 
 
-    //时间控件初始化当前日期
-    ui->dateEdit_add->setDate(QDateTime::currentDateTime().date()) ;
+        //加载
+        reloadAllMapIDS();
 
-    //添加车的ID
-    reloadAllMapIDS();
+        EditTableWithID()  ;  // 编辑表格可能 修改
+    }
 }
 
 AddDayWorkDialog::~AddDayWorkDialog()
@@ -78,9 +92,10 @@ void AddDayWorkDialog::on_PB_TEST_clicked()
     //auto ret = ui->dateEdit->date().toString("yyyy-MM-dd  ddd") ;
     //auto ret2 = ui->dateTimeEdit->dateTime().toString("yyyy-MM-dd AP hh:mm:ss ddd") ;
     //auto ret3 = ui->calendarWidget->selectedDate().toString("yyyy-MM-dd ddd") ;
-
-
 }
+
+
+
 
 
 void AddDayWorkDialog::on_PB_CANCLE_clicked()
@@ -96,7 +111,6 @@ void AddDayWorkDialog::on_PB_ADD_clicked()
     if(false == checkValidCtrl()) {
         return;
     }
-
 
     QSqlTableModel *modelQuery = new QSqlTableModel(this);
     modelQuery->setTable("tb_carswork");
@@ -180,10 +194,14 @@ bool AddDayWorkDialog::checkValidCtrl()
     if( ui->comboBox_cardid->currentText().length() == 0
             || ui->comboBox_people->currentText() == 0 )
     {
-
+        QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit(
+               "车号或者员工为空"),
+               QMessageBox::Ok);
+        return false   ;
     }
-
-    return  true ;
+    else {
+        return  true ;
+    }
 }
 
 
@@ -199,4 +217,33 @@ void AddDayWorkDialog::on_comboBox_cardid_currentTextChanged(const QString &arg1
     ui->comboBox_people->clear();
 
     reloadNameIDSMapByCarName(arg1) ;
+}
+
+
+// 编辑
+void AddDayWorkDialog::EditTableWithID()
+{
+    if(-1 == edit_tb_carwork_id ) {
+        return  ;
+    }
+
+
+    QSqlTableModel *modelQuery = new QSqlTableModel(this);
+    modelQuery->setTable("tb_carswork") ;
+    auto strSql = QString("id = '%1'")
+           .arg(edit_tb_carwork_id) ;
+
+    modelQuery->setFilter(strSql);
+    modelQuery->select();
+    auto curRows = modelQuery->rowCount();
+    if (0 == curRows ) {
+         QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit(
+                "不存在该条记录"),
+                QMessageBox::Ok);
+           return;
+    }
+
+
+
+
 }
