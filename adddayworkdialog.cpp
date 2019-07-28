@@ -8,6 +8,7 @@
 #include <QDateTime>
 #include <QMessageBox>
 #include <QSqlQuery>
+#include <QSqlRecord>
 #include <QStringLiteral>
 
 
@@ -156,15 +157,15 @@ void AddDayWorkDialog::on_PB_ADD_clicked()
     model->setData(model->index(rowNum,9), ui->spinBox_xk_carnums->value());            //细矿石车数
     model->setData(model->index(rowNum,10), ui->doubleSpinBox_xk_tons->value());        //细矿石吨数
 
-    model->setData(model->index(rowNum,11), ui->spinBox_xk_carnums->value());           //尾矿石车数
-    model->setData(model->index(rowNum,12), ui->doubleSpinBox_xk_tons->value());        //尾矿石吨数
+    model->setData(model->index(rowNum,11), ui->spinBox_wk_carnums->value());           //尾矿石车数
+    model->setData(model->index(rowNum,12), ui->doubleSpinBox_wk_tons->value());        //尾矿石吨数
 
-    model->setData(model->index(rowNum,13), ui->spinBox_xk_carnums->value());           //剥岩石车数
-    model->setData(model->index(rowNum,14), ui->doubleSpinBox_xk_tons->value());        //剥岩石吨数
+    model->setData(model->index(rowNum,13), ui->spinBox_by_carnums->value());           //剥岩石车数
+    model->setData(model->index(rowNum,14), ui->doubleSpinBox_by_tons->value());        //剥岩石吨数
 
     //日工工时
-    model->setData(model->index(rowNum,15), ui->comboBox_rz_where->currentText());       //日装工作地点
-    model->setData(model->index(rowNum,16), ui->comboBox_rz_type->currentText());        //日装工作地点
+    model->setData(model->index(rowNum,15), ui->comboBox_rg_where->currentText());       //日装工作地点
+    model->setData(model->index(rowNum,16), ui->comboBox_rg_type->currentText());        //日装工作地点
     model->setData(model->index(rowNum,17), ui->doubleSpinBox_rg_hours->value());        //日工工时数
 
 
@@ -172,8 +173,8 @@ void AddDayWorkDialog::on_PB_ADD_clicked()
     model->setData(model->index(rowNum,18), ui->doubleSpinBox_hoursofday->value());      //本日工作时长
     model->setData(model->index(rowNum,19), ui->doubleSpinBox_oils->value());            //柴油用量
     model->setData(model->index(rowNum,20), ui->doubleSpinBox_materials->value());       //材料费
-    model->setData(model->index(rowNum,21), ui->doubleSpinBox_repair->value());       //修理费
-    model->setData(model->index(rowNum,22), ui->textEdit_comment->toPlainText());       //修理费
+    model->setData(model->index(rowNum,21), ui->doubleSpinBox_repair->value());          //修理费
+    model->setData(model->index(rowNum,22), ui->textEdit_comment->toPlainText());        //备注
 
 
     bool ret = model->submitAll()  ;
@@ -220,7 +221,7 @@ void AddDayWorkDialog::on_comboBox_cardid_currentTextChanged(const QString &arg1
 }
 
 
-// 编辑
+//编辑
 void AddDayWorkDialog::EditTableWithID()
 {
     if(-1 == edit_tb_carwork_id ) {
@@ -236,14 +237,74 @@ void AddDayWorkDialog::EditTableWithID()
     modelQuery->setFilter(strSql);
     modelQuery->select();
     auto curRows = modelQuery->rowCount();
-    if (0 == curRows ) {
+    if (1 != curRows ) {
          QMessageBox::warning(this, QString::fromLocal8Bit("警告"), QString::fromLocal8Bit(
                 "不存在该条记录"),
                 QMessageBox::Ok);
            return;
     }
 
+    //0
+    ui->dateEdit_add->setDate( modelQuery->record(0).value(1).toDate()) ;  //添加的日期  ;
+
+    //1车的ID-->车名
+    {
+        int cardid = modelQuery->record(0).value(3).toInt()  ;
+        QMap<QString, int>::iterator iter_carid = mMapCars_ID.begin();
+        while (iter_carid != mMapCars_ID.end()) {
+             if(cardid == iter_carid.value())  {
+                 QString strCarName = iter_carid.key() ;
+                 ui->comboBox_cardid->setCurrentText(strCarName)  ;
+                 break ;
+             }
+             else {
+                 ++iter_carid ;
+             }
+        }
+    }
 
 
+    //2姓名
+    {
+        int peopleid = modelQuery->record(0).value(4).toInt() ;
+        QMap<QString, int>::iterator iter_people = mMapPeople_ID.begin();
+        while (iter_people != mMapPeople_ID.end()) {
+             if(peopleid == iter_people.value())  {
+                 QString strCarName = iter_people.key() ;
+                 ui->comboBox_people->setCurrentText(strCarName)  ;
+                 break ;
+             }
+             else {
+                 ++iter_people ;
+             }
+        }
+    }
+
+    //3
+    ui->comboBox_rz_where->setCurrentText(modelQuery->record(0).value(5).toString() ); //日装工作地点
+    ui->comboBox_rz_type->setCurrentText(modelQuery->record(0).value(6).toString() ) ; //日装工作地点
+    ui->spinBox_yk_carnums->setValue(modelQuery->record(0).value(7).toInt() )        ;  //原矿石车数
+    ui->doubleSpinBox_yk_tons->setValue(modelQuery->record(0).value(8).toDouble() )  ;  //原矿石吨数
+
+    ui->spinBox_xk_carnums->setValue(modelQuery->record(0).value(9).toInt())  ;         //细矿石车数
+    ui->doubleSpinBox_xk_tons->setValue(modelQuery->record(0).value(10).toDouble()) ;   //细矿石吨数
+
+    ui->spinBox_wk_carnums->setValue(modelQuery->record(0).value(11).toInt() ) ;        //尾矿石车数
+    ui->doubleSpinBox_wk_tons->setValue(modelQuery->record(0).value(12).toDouble());    //尾矿石吨数
+
+    ui->spinBox_by_carnums->setValue(modelQuery->record(0).value(13).toInt() ) ;       //剥岩石车数
+    ui->doubleSpinBox_by_tons->setValue(modelQuery->record(0).value(14).toDouble());   //剥岩石吨数
+
+    //日工工时
+    ui->comboBox_rg_where->setCurrentText(modelQuery->record(0).value(15).toString() );   //日装工作地点
+    ui->comboBox_rg_type->setCurrentText(modelQuery->record(0).value(16).toString() );    //日装工作地点
+    ui->doubleSpinBox_rg_hours->setValue(modelQuery->record(0).value(17).toDouble());     //日工工时数
+
+    //总计信息
+    ui->doubleSpinBox_hoursofday->setValue(modelQuery->record(0).value(18).toDouble());   //本日工作时长
+    ui->doubleSpinBox_oils->setValue(modelQuery->record(0).value(19).toDouble());         //柴油用量
+    ui->doubleSpinBox_materials->setValue(modelQuery->record(0).value(20).toDouble());    //材料费
+    ui->doubleSpinBox_repair->setValue(modelQuery->record(0).value(21).toDouble());      //修理费
+    ui->textEdit_comment->setText(modelQuery->record(0).value(22).toString()) ;   // 备注
 
 }
