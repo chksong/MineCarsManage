@@ -11,6 +11,8 @@
 #include "carsclassdialog.h"
 #include "adddayworkdialog.h"
 
+#include "HTableview/HHeaderModel.h"
+
 
 namespace Ui {
 class MainWindow;
@@ -48,6 +50,8 @@ protected:
 private slots:
     void on_PB_refresh_clicked();
 
+    void on_pushButton_2_clicked();
+
 private:
     Ui::MainWindow *ui;
 
@@ -59,6 +63,7 @@ private:
     QMap<int,qlonglong>   mMapRowWithRID ; // 行号 对应数据 行ID
 
     QMenu * tableViewRightMenu{nullptr}  ;
+    HHeaderModel *m_pModel { nullptr} ;
 };
 
 #endif // MAINWINDOW_H
