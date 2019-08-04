@@ -5,7 +5,7 @@
 #-------------------------------------------------
 
 QT       += core gui
-QT       += sql
+QT       += sql  xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -41,7 +41,8 @@ SOURCES += \
         main.cpp \
         mainwindow.cpp \
         mysqldbhelp.cpp \
-        peopledialog.cpp
+        peopledialog.cpp \
+        qreadxmlcfg.cpp
 
 HEADERS += \
         HTableview/HHeaderItemDelegate.h \
@@ -56,7 +57,8 @@ HEADERS += \
         dialoghelp.h \
         mainwindow.h \
         mysqldbhelp.h \
-        peopledialog.h
+        peopledialog.h \
+        qreadxmlcfg.h
 
 FORMS += \
         HTableview/TcTableWidget.ui \

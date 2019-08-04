@@ -21,6 +21,8 @@
 #include <QMessageBox>
 #include <QSharedMemory>
 
+#include "qreadxmlcfg.h"
+
 ////////////////////////////////////////////////////////////////
 /// \brief  将输出到文件中
 /// https://stackoverflow.com/questions/4954140/how-to-redirect-qdebug-qwarning-qcritical-etc-output
@@ -98,7 +100,12 @@ int main(int argc, char *argv[])
 
      }
 
+   QReadXMLCfg::GetInstance()->CreateCfgItemToXML() ;
+    QReadXMLCfg::GetInstance()->readCfg() ;
+
     initMySQLDB() ;
+
+
 
 
     MainWindow w;
