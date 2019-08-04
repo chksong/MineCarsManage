@@ -330,7 +330,7 @@ void MainWindow::addOneDayWork(bool var)
     if(QDialog::Accepted  == dlgAddDayWorkDlg->exec() )
     {
 
-        m_pModel->setItem(0,0, QDate::currentDate().toString("yyyy-MM-dd"));
+        m_pModel->setItem(0,0, ui->dateEdit_search->date().toString("yyyy-MM-dd"));
         reloadTableData();
     }
 }
