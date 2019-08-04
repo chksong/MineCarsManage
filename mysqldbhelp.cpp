@@ -7,6 +7,7 @@
 #include <QString>
 #include <QSqlQuery>
 #include <QMessageLogger>
+#include "qreadxmlcfg.h"
 
 MysqlDBHelp::MysqlDBHelp()
 {
@@ -29,10 +30,10 @@ bool MysqlDBHelp::testMysqlAvailabe()
 
     //建立数据库连接
     _db = QSqlDatabase::addDatabase("QMYSQL");
-    _db.setHostName("localhost");
+    _db.setHostName(QReadXMLCfg::GetInstance()->strMysqlHost);
     _db.setDatabaseName("DB_MineCars");
-    _db.setUserName("root");
-    _db.setPassword("123456");
+    _db.setUserName(QReadXMLCfg::GetInstance()->strUser);
+    _db.setPassword(QReadXMLCfg::GetInstance()->strPasswd);
     if (!_db.open()) {
         qDebug() << "Failed t connect to root mysql admin";
         return false;
