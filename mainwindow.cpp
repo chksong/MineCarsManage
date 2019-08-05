@@ -103,7 +103,7 @@ void MainWindow::reloadTableData()
     ui->tableWidget->horizontalHeader()->repaint() ;
 
 
-    QString str = QString("select * from tb_carswork ")  ;
+    QString str = QString("select * from tb_carswork where date='%1'").arg(ui->dateEdit_search->text())  ;
     QSqlQuery query ;
     query.exec(str) ;
 

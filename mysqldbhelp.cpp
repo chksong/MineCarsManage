@@ -9,6 +9,8 @@
 #include <QMessageLogger>
 #include "qreadxmlcfg.h"
 
+#include "cominc.h"
+
 MysqlDBHelp::MysqlDBHelp()
 {
 
@@ -36,10 +38,13 @@ bool MysqlDBHelp::testMysqlAvailabe()
     _db.setPassword(QReadXMLCfg::GetInstance()->strPasswd);
     if (!_db.open()) {
         qDebug() << "Failed t connect to root mysql admin";
+        LOGE << "Failed t connect to root mysql admin";
         return false;
     }
-    else
+    else{
        qDebug() << "connect to DB_MineCars sucessful";
+       LOGI  << "connect to DB_MineCars sucessful";
+    }
 
     return true ;
 }
