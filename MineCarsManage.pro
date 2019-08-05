@@ -54,10 +54,18 @@ HEADERS += \
         adddayworkdialog.h \
         carsclassdialog.h \
         carsmanagedialog.h \
+        cominc.h \
         dialoghelp.h \
         mainwindow.h \
         mysqldbhelp.h \
         peopledialog.h \
+        plog/Init.h \
+        plog/Log.h \
+        plog/Logger.h \
+        plog/Record.h \
+        plog/Severity.h \
+        plog/Util.h \
+        plog/WinApi.h \
         qreadxmlcfg.h
 
 FORMS += \
