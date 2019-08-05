@@ -12,6 +12,7 @@
 #include "adddayworkdialog.h"
 
 #include "HTableview/HHeaderModel.h"
+#include "HTableview/HHeaderView.h"
 
 
 namespace Ui {
@@ -64,6 +65,7 @@ private:
 
     QMenu * tableViewRightMenu{nullptr}  ;
     HHeaderModel *m_pModel { nullptr} ;
+    HHeaderView  *m_pHeadView {nullptr}  ;
 };
 
 #endif // MAINWINDOW_H
