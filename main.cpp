@@ -23,6 +23,8 @@
 
 #include "qreadxmlcfg.h"
 
+#include "cominc.h"
+
 ////////////////////////////////////////////////////////////////
 /// \brief  将输出到文件中
 /// https://stackoverflow.com/questions/4954140/how-to-redirect-qdebug-qwarning-qcritical-etc-output
@@ -74,6 +76,14 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
 
+    QString strFileAppLog = QCoreApplication::applicationDirPath();
+    strFileAppLog.append("/MineCarsManageAPP.log");
+
+
+    //1 初始化日志
+     plog::init(plog::debug,strFileAppLog.toStdString().c_str() );
+     LOGI << " ******* init MineCarsManage log file  *****";
+
 
     a.processEvents();
      //---- Check for another instance code snippet ----
@@ -91,10 +101,9 @@ int main(int argc, char *argv[])
           msgBox.setIcon( QMessageBox::Critical );
           msgBox.exec();
 
-         qWarning() << "Can't start more than one instance of the application.";
+         LOGI<< "Can't start more than one instance of the application.";
          return  0;
      }
-
 
     if( shared.create( 512, QSharedMemory::ReadWrite) ){
 
