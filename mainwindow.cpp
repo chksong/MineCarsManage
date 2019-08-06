@@ -99,11 +99,14 @@ void MainWindow::reloadTableData()
         ui->tableWidget->removeRow(i);
     }
     ui->tableWidget->clear() ;
+    //更新日期
+    ui->tableWidget->horizontalHeader()->repaint() ;
 
 
-    QString str = QString("select * from tb_carswork")  ;
+    QString str = QString("select * from tb_carswork where date='%1'").arg(ui->dateEdit_search->text())  ;
     QSqlQuery query ;
     query.exec(str) ;
+
 
 
     ui->tableWidget->setColumnCount(22) ;
@@ -128,6 +131,8 @@ void MainWindow::reloadTableData()
         }  // end for col_index
 
     }  // end for row_index
+
+
 }
 
 
@@ -150,8 +155,9 @@ void MainWindow::initTable()
 
 void MainWindow::initHeadView(QTableWidget *pTableView)
 {
-    HHeaderView *pHeadView = new HHeaderView(Qt::Horizontal);
-  
+
+    m_pHeadView = new HHeaderView(Qt::Horizontal);
+
     m_pModel = new HHeaderModel();
 
     m_pModel->setItem(0,0, QDate::currentDate().toString("  yyyy-MM-dd"));
@@ -228,9 +234,9 @@ void MainWindow::initHeadView(QTableWidget *pTableView)
 
 
 
-    pHeadView->setModel(m_pModel);
-    pHeadView->setAutoScroll(true) ;
-    pTableView->setHorizontalHeader(pHeadView);
+    m_pHeadView->setModel(m_pModel);
+    m_pHeadView->setAutoScroll(true) ;
+    pTableView->setHorizontalHeader(m_pHeadView);
 }
 
 
@@ -261,12 +267,6 @@ void MainWindow::carsClassManage(bool var)
 
 
 
-// 刷新
-void MainWindow::on_PB_refresh_clicked()
-{
-
-    reloadTableData()  ;
-}
 
 
 
@@ -335,7 +335,6 @@ void MainWindow::addOneDayWork(bool var)
     if(QDialog::Accepted  == dlgAddDayWorkDlg->exec() )
     {
 
-        m_pModel->setItem(0,0, ui->dateEdit_search->date().toString("yyyy-MM-dd"));
         reloadTableData();
     }
 }
@@ -345,4 +344,14 @@ void MainWindow::addOneDayWork(bool var)
 void MainWindow::on_pushButton_2_clicked()
 {
 
+}
+
+
+// 刷新
+void MainWindow::on_PB_refresh_clicked()
+{
+    m_pModel->setItem(0,0, ui->dateEdit_search->date().toString("yyyy-MM-dd"));
+
+
+    reloadTableData()  ;
 }

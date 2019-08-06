@@ -1,4 +1,4 @@
-#include "qreadxmlcfg.h"
+﻿#include "qreadxmlcfg.h"
 
 #include <QDomDocument>
 #include <QDomProcessingInstruction>
@@ -6,6 +6,9 @@
 #include <QTextStream>
 #include <QDir>
 #include <QCoreApplication>
+
+
+#include "cominc.h"
 
 
 
@@ -35,12 +38,16 @@ void QReadXMLCfg::readCfg()
 
     //打开或创建文件
     QFile file(strFileAppConfig); //相对路径、绝对路径、资源路径都行
-    if (!file.open(QFile::ReadOnly))
-         return;
+    if (!file.open(QFile::ReadOnly)) {
+        LOGE << "Open xmlCfg=" << strFileAppConfig.toStdString() << "is Error"  ;
+        return;
+    }
+    LOGI << "Open xmlCfg=" << strFileAppConfig.toStdString() << " is OK"  ;
 
     QDomDocument doc;
     if (!doc.setContent(&file))
     {
+        LOGE << "doc.setContent(&file) is Error"  ;
         file.close();
         return;
     }
@@ -54,6 +61,8 @@ void QReadXMLCfg::readCfg()
         strUser      =  node.toElement().attribute("user")  ;
         strPasswd   =  node.toElement().attribute("passwd") ;
     }
+
+    LOGI << "strMysqlHost=" << strMysqlHost.toStdString() << "  strUser=" << strUser.toStdString();
 
     file.close() ;
 }
@@ -73,7 +82,10 @@ void QReadXMLCfg::CreateCfgItemToXML()
 
     QFile file(strFileAppConfig); //相对路径、绝对路径、资源路径都可以
     if (!file.open(QFile::WriteOnly | QFile::Truncate)) //可以用QIODevice，Truncate表示清空原来的内容
+    {
+
         return;
+    }
 
     QDomDocument doc;
     //写入xml头部
