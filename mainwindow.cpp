@@ -151,10 +151,14 @@ void MainWindow::initTable()
 void MainWindow::initHeadView(QTableWidget *pTableView)
 {
     HHeaderView *pHeadView = new HHeaderView(Qt::Horizontal);
+  
     m_pModel = new HHeaderModel();
 
     m_pModel->setItem(0,0, QDate::currentDate().toString("  yyyy-MM-dd"));
     m_pModel->setSpan(0,0,1,3);  // 车号
+
+    m_pModel->setItem(1,0, QString(""));
+    m_pModel->setSpan(1,0,1,3);  // 车号
 
 
     m_pModel->setItem(2,0, QStringLiteral("车号"));
@@ -169,8 +173,9 @@ void MainWindow::initHeadView(QTableWidget *pTableView)
     m_pModel->setSpan(0,3,1,10);
 
     m_pModel->setItem(1,3, QStringLiteral(""));
+    m_pModel->setSpan(1,3,1,2);
     m_pModel->setItem(2,3, QStringLiteral("工作地点"));
-    m_pModel->setItem(1,4, QStringLiteral(""));
+  //  m_pModel->setItem(1,4, QStringLiteral(""));
     m_pModel->setItem(2,4, QStringLiteral("工作类型"));
 
 
