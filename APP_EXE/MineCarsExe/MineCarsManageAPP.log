@@ -1,0 +1,32 @@
+﻿2019-08-06 12:51:29.441 INFO  [2140] [main@85]  ******* init MineCarsManage log file  *****
+2019-08-06 12:51:29.445 INFO  [2140] [QReadXMLCfg::readCfg@45] Open xmlCfg=D:/Qt-Exe/MineCarsConfig.xml is OK
+2019-08-06 12:51:29.445 INFO  [2140] [QReadXMLCfg::readCfg@65] strMysqlHost=127.0.0.1  strUser=root
+2019-08-06 12:51:29.519 INFO  [2140] [MysqlDBHelp::testMysqlAvailabe@46] connect to DB_MineCars sucessful
+2019-08-06 16:07:04.705 INFO  [19312] [main@85]  ******* init MineCarsManage log file  *****
+2019-08-06 16:07:04.710 INFO  [19312] [QReadXMLCfg::readCfg@45] Open xmlCfg=D:/MIneCarsExe/MineCarsConfig.xml is OK
+2019-08-06 16:07:04.711 INFO  [19312] [QReadXMLCfg::readCfg@65] strMysqlHost=127.0.0.1  strUser=root
+2019-08-06 16:07:04.803 INFO  [19312] [MysqlDBHelp::testMysqlAvailabe@46] connect to DB_MineCars sucessful
+2019-08-06 16:12:25.188 INFO  [18608] [main@85]  ******* init MineCarsManage log file  *****
+2019-08-06 16:12:25.196 INFO  [18608] [QReadXMLCfg::readCfg@45] Open xmlCfg=D:/MIneCarsExe/MineCarsConfig.xml is OK
+2019-08-06 16:12:25.196 INFO  [18608] [QReadXMLCfg::readCfg@65] strMysqlHost=127.0.0.1  strUser=root
+2019-08-06 16:12:25.266 INFO  [18608] [MysqlDBHelp::testMysqlAvailabe@46] connect to DB_MineCars sucessful
+2019-08-08 09:31:57.183 INFO  [27056] [main@85]  ******* init MineCarsManage log file  *****
+2019-08-08 09:31:57.195 INFO  [27056] [QReadXMLCfg::readCfg@45] Open xmlCfg=D:/MIneCarsExe/MineCarsConfig.xml is OK
+2019-08-08 09:31:57.196 INFO  [27056] [QReadXMLCfg::readCfg@65] strMysqlHost=127.0.0.1  strUser=root
+2019-08-08 09:31:57.198 ERROR [27056] [MysqlDBHelp::testMysqlAvailabe@41] Failed t connect to root mysql admin
+2019-08-08 09:36:09.408 INFO  [32884] [main@85]  ******* init MineCarsManage log file  *****
+2019-08-08 09:36:09.414 INFO  [32884] [QReadXMLCfg::readCfg@45] Open xmlCfg=D:/MIneCarsExe/MineCarsConfig.xml is OK
+2019-08-08 09:36:09.415 INFO  [32884] [QReadXMLCfg::readCfg@65] strMysqlHost=127.0.0.1  strUser=root
+2019-08-08 09:36:09.546 INFO  [32884] [MysqlDBHelp::testMysqlAvailabe@46] connect to DB_MineCars sucessful
+2019-08-08 11:38:25.499 INFO  [55000] [main@85]  ******* init MineCarsManage log file  *****
+2019-08-08 11:38:25.505 INFO  [55000] [QReadXMLCfg::readCfg@45] Open xmlCfg=D:/MIneCarsExe/MineCarsConfig.xml is OK
+2019-08-08 11:38:25.506 INFO  [55000] [QReadXMLCfg::readCfg@65] strMysqlHost=127.0.0.1  strUser=root
+2019-08-08 11:38:25.517 INFO  [55000] [MysqlDBHelp::testMysqlAvailabe@33] QSQLITE
+2019-08-08 11:38:25.518 INFO  [55000] [MysqlDBHelp::testMysqlAvailabe@33] QMYSQL
+2019-08-08 11:38:25.518 INFO  [55000] [MysqlDBHelp::testMysqlAvailabe@33] QMYSQL3
+2019-08-08 11:38:25.518 INFO  [55000] [MysqlDBHelp::testMysqlAvailabe@33] QODBC
+2019-08-08 11:38:25.518 INFO  [55000] [MysqlDBHelp::testMysqlAvailabe@33] QODBC3
+2019-08-08 11:38:25.518 INFO  [55000] [MysqlDBHelp::testMysqlAvailabe@33] QPSQL
+2019-08-08 11:38:25.518 INFO  [55000] [MysqlDBHelp::testMysqlAvailabe@33] QPSQL7
+2019-08-08 11:38:25.646 INFO  [55000] [MysqlDBHelp::testMysqlAvailabe@63] connect to DB_MineCars sucessful
+2019-08-08 11:38:25.654 INFO  [55000] [MysqlDBHelp::testMysqlAvailabe@83] connect to DB_MineCars sucessful
