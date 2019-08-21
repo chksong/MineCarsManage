@@ -6,6 +6,8 @@
 #include <QCoreApplication>
 #include <QString>
 #include <QSqlQuery>
+#include <QSqlError>
+#include <QSqlDatabase>
 #include <QMessageLogger>
 #include "qreadxmlcfg.h"
 
@@ -27,8 +29,41 @@ bool MysqlDBHelp::testMysqlAvailabe()
 
     qDebug() << "Available drivers:";
     QStringList drivers = QSqlDatabase::drivers();
-    foreach(QString driver, drivers)
+    foreach(QString driver, drivers) {
+       LOGI  << driver.toStdString()  ;
        qDebug() << driver;
+    }
+
+    // 创建数据库
+    {
+       QSqlDatabase check_db = QSqlDatabase::addDatabase("QMYSQL");
+       check_db.setHostName(QReadXMLCfg::GetInstance()->strMysqlHost);
+       check_db.setUserName(QReadXMLCfg::GetInstance()->strUser);
+       check_db.setPassword(QReadXMLCfg::GetInstance()->strPasswd);
+       if(!check_db.open())   {
+           qDebug() << "Failed t open to   mysql  ";
+           LOGE << "Failed t open to   mysql  ";
+           return false ;
+       } else  {
+           qDebug()<<"open succeeded";
+       }
+
+
+       auto querystring = "CREATE DATABASE IF NOT EXISTS DB_MineCars DEFAULT CHARSET utf8 COLLATE utf8_general_ci";
+       check_db.exec(querystring);
+       if (check_db.lastError().isValid())
+       {
+           qDebug() << check_db.lastError();
+           qDebug() << "Create database failed.";
+           return false ;
+       }
+       else
+       {
+           qDebug() << "connect to DB_MineCars sucessful";
+           LOGI  << "connect to DB_MineCars sucessful";
+       }
+       check_db.close() ;
+    }
 
     //建立数据库连接
     _db = QSqlDatabase::addDatabase("QMYSQL");
@@ -39,9 +74,11 @@ bool MysqlDBHelp::testMysqlAvailabe()
     if (!_db.open()) {
         qDebug() << "Failed t connect to root mysql admin";
         LOGE << "Failed t connect to root mysql admin";
-        return false;
+
+        return false ;
     }
     else{
+
        qDebug() << "connect to DB_MineCars sucessful";
        LOGI  << "connect to DB_MineCars sucessful";
     }

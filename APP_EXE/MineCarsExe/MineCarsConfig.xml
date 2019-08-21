@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<MineCarsCfg>
+    <MySQL user="root" host="127.0.0.1" passwd="123456" port="3306">Mysq Config Item</MySQL>
+</MineCarsCfg>

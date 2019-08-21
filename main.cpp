@@ -97,7 +97,7 @@ int main(int argc, char *argv[])
      {
          // For a GUI application, replace this by :
           QMessageBox msgBox;
-          msgBox.setText( QObject::tr("不能启动多个实例.") );
+          msgBox.setText( QString::fromLocal8Bit("不能启动多个实例.") );
           msgBox.setIcon( QMessageBox::Critical );
           msgBox.exec();
 
