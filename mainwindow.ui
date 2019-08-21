@@ -72,7 +72,7 @@
      <x>0</x>
      <y>0</y>
      <width>842</width>
-     <height>23</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu">
@@ -85,6 +85,7 @@
      <string>日常管理</string>
     </property>
     <addaction name="actionAddOneDay"/>
+    <addaction name="action_YueJieSuan"/>
    </widget>
    <widget class="QMenu" name="menu_3">
     <property name="title">
@@ -102,17 +103,10 @@
     </property>
     <addaction name="actionPeople"/>
    </widget>
-   <widget class="QMenu" name="menuhelp">
-    <property name="title">
-     <string>help</string>
-    </property>
-    <addaction name="actionhelp"/>
-   </widget>
    <addaction name="menu"/>
    <addaction name="menu_2"/>
    <addaction name="menu_3"/>
    <addaction name="menu_4"/>
-   <addaction name="menuhelp"/>
   </widget>
   <widget class="QToolBar" name="mainToolBar">
    <attribute name="toolBarArea">
@@ -159,6 +153,11 @@
   <action name="actionhelp">
    <property name="text">
     <string>help</string>
+   </property>
+  </action>
+  <action name="action_YueJieSuan">
+   <property name="text">
+    <string>月结算</string>
    </property>
   </action>
  </widget>

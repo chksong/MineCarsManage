@@ -36,6 +36,7 @@ public slots:
     void addOneDayWork(bool)  ;
     void carsManage(bool)  ;
     void peopleManage(bool)  ;
+    void MonthJieSuan(bool)  ;
 
     void on_menu_edit_clicked();
     void on_menu_del_clicked();
@@ -51,7 +52,10 @@ protected:
 private slots:
     void on_PB_refresh_clicked();
 
-    void on_pushButton_2_clicked();
+
+    void on_dateEdit_search_customContextMenuRequested(const QPoint &pos);
+
+    void on_pushButton_3_clicked();
 
 private:
     Ui::MainWindow *ui;

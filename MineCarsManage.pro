@@ -38,6 +38,7 @@ SOURCES += \
         carsclassdialog.cpp \
         carsmanagedialog.cpp \
         dialoghelp.cpp \
+        dlgjiesuan.cpp \
         main.cpp \
         mainwindow.cpp \
         mysqldbhelp.cpp \
@@ -56,6 +57,7 @@ HEADERS += \
         carsmanagedialog.h \
         cominc.h \
         dialoghelp.h \
+        dlgjiesuan.h \
         mainwindow.h \
         mysqldbhelp.h \
         peopledialog.h \
@@ -74,6 +76,7 @@ FORMS += \
         carsclassdialog.ui \
         carsmanagedialog.ui \
         dialoghelp.ui \
+        dlgjiesuan.ui \
         mainwindow.ui \
         peopledialog.ui
 

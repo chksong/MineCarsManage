@@ -23,6 +23,9 @@
 #include "HTableview/HHeaderView.h"
 #include "HTableview/TcTabelModel.h"
 
+#include "QCalendarWidget"
+#include "dlgjiesuan.h"
+
 enum {
     COL_CARID       =   3 ,
     COL_PEOPLE      =   4 ,
@@ -46,6 +49,7 @@ MainWindow::MainWindow(QWidget *parent) :
     setGeometry( QGuiApplication::primaryScreen()->geometry()) ;
 
     ui->dateEdit_search->setDate(QDate::currentDate())  ;
+    ui->dateEdit_search->setCalendarPopup(true);
 
     // 初始化表格
     initTable() ;
@@ -56,6 +60,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionCarsManag, &QAction::triggered, this,  &MainWindow::carsManage) ;
     connect(ui->actionPeople ,   &QAction::triggered ,this,  &MainWindow::peopleManage )  ;
     connect(ui->actionhelp,      &QAction::triggered ,this, &MainWindow::dohelp) ;
+    connect(ui->action_YueJieSuan, &QAction::triggered ,this, &MainWindow::MonthJieSuan) ;
 
 
     // 初始化tableWight的右键
@@ -171,9 +176,6 @@ void MainWindow::initHeadView(QTableWidget *pTableView)
     m_pModel->setItem(2,1, QStringLiteral("品牌型号"));
     m_pModel->setItem(2,2, QStringLiteral("月初小时数"));
 
-//    pModel->setSpan(2,0,2,1);  // 车号
-//    pModel->setSpan(2,1,2,1);  // 品牌型号
-//    pModel->setSpan(1,2,2,1);  // 品牌型号
 
     m_pModel->setItem(0,3, QStringLiteral("日装矿量"));
     m_pModel->setSpan(0,3,1,10);
@@ -341,8 +343,17 @@ void MainWindow::addOneDayWork(bool var)
 
 
 // 结算
-void MainWindow::on_pushButton_2_clicked()
+void MainWindow::MonthJieSuan(bool  tag)
 {
+//    SELECT carid,
+//        SUM(hoursofdays)
+//    FROM tb_carswork
+//    GROUP BY carid
+
+    DlgJieSuan  *dlgJieSuan = new DlgJieSuan(this)  ;
+    if(QDialog::Accepted  == dlgJieSuan->exec() )
+    {
+    }
 
 }
 
@@ -354,4 +365,21 @@ void MainWindow::on_PB_refresh_clicked()
 
 
     reloadTableData()  ;
+}
+
+void MainWindow::on_dateEdit_search_customContextMenuRequested(const QPoint &pos)
+{
+  //  QCalendarWidget *calendar = new QCalendarWidget(this) ;
+
+  //  calendar->show() ;
+
+}
+
+void MainWindow::on_pushButton_3_clicked()
+{
+    QCalendarWidget *calendar = new QCalendarWidget(this) ;
+
+    QRect rect = QGuiApplication::primaryScreen()->geometry() ;
+    calendar->setGeometry(rect.width()/2-175 ,rect.height()/2-90,350,180);
+    calendar->show() ;
 }
