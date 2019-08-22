@@ -55,11 +55,11 @@ MainWindow::MainWindow(QWidget *parent) :
     initTable() ;
 
     // 关联按钮
-    connect(ui->actionCarsClass, &QAction::triggered , this ,&MainWindow::carsClassManage) ;
-    connect(ui->actionAddOneDay, &QAction::triggered, this,  &MainWindow::addOneDayWork)  ;
-    connect(ui->actionCarsManag, &QAction::triggered, this,  &MainWindow::carsManage) ;
-    connect(ui->actionPeople ,   &QAction::triggered ,this,  &MainWindow::peopleManage )  ;
-    connect(ui->actionhelp,      &QAction::triggered ,this, &MainWindow::dohelp) ;
+    connect(ui->actionCarsClass, &QAction::triggered , this , &MainWindow::carsClassManage) ;
+    connect(ui->actionAddOneDay, &QAction::triggered, this,   &MainWindow::addOneDayWork)  ;
+    connect(ui->actionCarsManag, &QAction::triggered, this,   &MainWindow::carsManage) ;
+    connect(ui->actionPeople ,   &QAction::triggered ,this,   &MainWindow::peopleManage )  ;
+    connect(ui->actionhelp,      &QAction::triggered ,this,   &MainWindow::dohelp) ;
     connect(ui->action_YueJieSuan, &QAction::triggered ,this, &MainWindow::MonthJieSuan) ;
 
 
