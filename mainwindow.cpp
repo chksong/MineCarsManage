@@ -47,6 +47,7 @@ MainWindow::MainWindow(QWidget *parent) :
 //    QRect deskRect = QApplication::desktop()->screenGeometry();
 //    this->setGeometry(deskRect);
     setGeometry( QGuiApplication::primaryScreen()->geometry()) ;
+    setWindowState(Qt::WindowMaximized);
 
     ui->dateEdit_search->setDate(QDate::currentDate())  ;
     ui->dateEdit_search->setCalendarPopup(true);

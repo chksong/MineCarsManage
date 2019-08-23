@@ -1,7 +1,8 @@
-#ifndef DLGJIESUAN_H
+﻿#ifndef DLGJIESUAN_H
 #define DLGJIESUAN_H
 
 #include <QDialog>
+#include <QSqlRelationalTableModel>
 
 namespace Ui {
 class DlgJieSuan;
@@ -20,6 +21,7 @@ private slots:
 
 private:
     Ui::DlgJieSuan *ui;
+    QSqlRelationalTableModel  *model{nullptr} ;
 };
 
 #endif // DLGJIESUAN_H

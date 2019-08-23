@@ -11,34 +11,31 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>月结算窗口</string>
   </property>
-  <widget class="QDateEdit" name="dateEdit_JieSuanMonth">
-   <property name="geometry">
-    <rect>
-     <x>40</x>
-     <y>20</y>
-     <width>110</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="displayFormat">
-    <string>yyyy年M月</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="PB_jieSuan">
-   <property name="geometry">
-    <rect>
-     <x>190</x>
-     <y>20</y>
-     <width>113</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>结算</string>
-   </property>
-  </widget>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QDateEdit" name="dateEdit_JieSuanMonth">
+       <property name="displayFormat">
+        <string>yyyy年M月</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="PB_jieSuan">
+       <property name="text">
+        <string>结算</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QTableView" name="tableView"/>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>

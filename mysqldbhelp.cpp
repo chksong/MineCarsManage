@@ -179,5 +179,24 @@ bool MysqlDBHelp::initTables()
 
    }
 
+
+    {
+         //6 结算的表格
+         QString sqlJieSuan =" CREATE TABLE IF NOT EXISTS `tb_JieSuan` (  \
+                    `id` int(11) NOT NULL AUTO_INCREMENT,       \
+                    `carid` int(11)  NOT NULL,                  \
+                     FOREIGN KEY(carid) REFERENCES tb_cars(id) ,\
+                     `year` int DEFAULT NULL,                   \
+                     `month` int DEFAULT NULL,                  \
+                    `hoursofMonth` double DEFAULT NULL,         \
+                    `hoursofBOM` double DEFAULT NULL,         \
+                     PRIMARY KEY (`id`)                         \
+                   ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8; " ;
+
+
+         auto ret_JieSuan = query.exec(sqlJieSuan) ;
+         qDebug()  << "  ret_JieSuan=="  << ret_JieSuan  ;
+     }
+
     return false  ;
 }
