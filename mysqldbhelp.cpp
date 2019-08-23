@@ -55,10 +55,10 @@ bool MysqlDBHelp::testMysqlAvailabe()
        {
            qDebug() << check_db.lastError();
            qDebug() << "Create database failed.";
+           LOGI <<  "Create database failed. " << check_db.lastError().text().toStdString();
            return false ;
        }
-       else
-       {
+       else {
            qDebug() << "connect to DB_MineCars sucessful";
            LOGI  << "connect to DB_MineCars sucessful";
        }
