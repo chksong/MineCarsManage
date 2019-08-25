@@ -16,6 +16,8 @@ public:
     explicit DlgJieSuan(QWidget *parent = nullptr);
     ~DlgJieSuan();
 
+    bool jieSuanMonth(int year, int month) ;
+
 private slots:
     void on_PB_jieSuan_clicked();
 

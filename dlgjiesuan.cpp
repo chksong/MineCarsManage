@@ -3,6 +3,7 @@
 #include <QDebug>
 
 #include <QSqlRelationalTableModel>
+#include <QSqlQuery>
 
 DlgJieSuan::DlgJieSuan(QWidget *parent) :
     QDialog(parent),
@@ -53,4 +54,39 @@ void DlgJieSuan::on_PB_jieSuan_clicked()
     qDebug() << date  ;
 
     return ;
+}
+
+
+
+bool DlgJieSuan::jieSuanMonth(int year, int month)
+{
+    QString strLastMonthDate, strThisMonthDate ;
+    strThisMonthDate = QString("%1-%2-25").arg(year).arg(month) ;
+
+    if (1 == month) {   //一月份，获得上一个年的12月份
+        strLastMonthDate = QString("%1-%2-25").arg(year-1).arg(12) ;
+    }
+    else {
+        strLastMonthDate = QString("%1-%2-25").arg(year).arg(month-1) ;
+    }
+
+    // 统计出结果
+    QString strQuery = QString("SELECT carid, SUM(hoursofdays)  \
+        FROM tb_carswork                \
+        WHERE date > '%1' and date <= '%2' GROUP BY carid")
+        .arg(strLastMonthDate).arg(strThisMonthDate) ;
+
+    QSqlQuery  query ;
+    query.exec(strQuery) ;
+    while (query.next()) {
+
+
+
+
+
+    }
+
+
+
+
 }
