@@ -186,11 +186,10 @@ bool MysqlDBHelp::initTables()
                     `id` int(11) NOT NULL AUTO_INCREMENT,       \
                     `carid` int(11)  NOT NULL,                  \
                      FOREIGN KEY(carid) REFERENCES tb_cars(id) ,\
-                     `year` int DEFAULT NULL,                   \
-                     `month` int DEFAULT NULL,                  \
+                    `yearMonth` varchar(11) NOT NULL unique ,    \
                     `hoursofMonth` double DEFAULT NULL,         \
-                    `hoursofBOM` double DEFAULT NULL,         \
-                     PRIMARY KEY (`id`)                         \
+                    `hoursofBOM` double DEFAULT NULL,           \
+                     PRIMARY KEY (`id`)            \
                    ) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8; " ;
 
 

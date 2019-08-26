@@ -49,11 +49,13 @@ DlgJieSuan::~DlgJieSuan()
 
 void DlgJieSuan::on_PB_jieSuan_clicked()
 {
-    auto date =  ui->dateEdit_JieSuanMonth->date().toString("yyyy-MM-25") ;
+    auto strdate =  ui->dateEdit_JieSuanMonth->date().toString("yyyy-MM-25") ;
 
-    qDebug() << date  ;
+ //   qDebug() << strdate  ;
+    auto  date = ui->dateEdit_JieSuanMonth->date() ;
 
-    return ;
+    jieSuanMonth(date.year() ,date.month())  ;
+
 }
 
 
@@ -86,7 +88,13 @@ bool DlgJieSuan::jieSuanMonth(int year, int month)
 
     }
 
+  //  QString strInsert = QString("INSERT INTO tb_JieSuan (yearMonth,carid,hoursofMonth) VALUES (1,13,3)  \
+  //                  ON DUPLICATE KEY UPDATE hoursofMonth=hoursofMonth+1") ;
 
+    QString strInsert = QString("REPLACE INTO tb_JieSuan (yearMonth,carid,hoursofMonth) VALUES (1,13,3)");
+
+
+    query.exec(strInsert) ;
 
 
 }
