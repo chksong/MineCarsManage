@@ -92,9 +92,5 @@ bool DlgJieSuan::jieSuanMonth(int year, int month)
   //                  ON DUPLICATE KEY UPDATE hoursofMonth=hoursofMonth+1") ;
 
     QString strInsert = QString("REPLACE INTO tb_JieSuan (yearMonth,carid,hoursofMonth) VALUES (1,13,3)");
-
-
     query.exec(strInsert) ;
-
-
 }
