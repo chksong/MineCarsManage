@@ -186,7 +186,7 @@ bool MysqlDBHelp::initTables()
                     `id` int(11) NOT NULL AUTO_INCREMENT,       \
                     `carid` int(11)  NOT NULL,                  \
                      FOREIGN KEY(carid) REFERENCES tb_cars(id) ,\
-                    `yearMonth` varchar(11) NOT NULL unique ,    \
+                    `yearMonth` varchar(28) NOT NULL ,    \
                     `hoursofMonth` double DEFAULT NULL,         \
                     `hoursofBOM` double DEFAULT NULL,           \
                      PRIMARY KEY (`id`)            \

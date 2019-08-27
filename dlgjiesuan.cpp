@@ -28,9 +28,11 @@ DlgJieSuan::DlgJieSuan(QWidget *parent) :
     model->setHeaderData(4, Qt::Horizontal, QStringLiteral("月初工时数"));
 
 
-    QString strSql = QString("year = '%1' and month = '%2'")
-           .arg(ui->dateEdit_JieSuanMonth->date().year())
-           .arg(ui->dateEdit_JieSuanMonth->date().month());
+    QString strMonthYear = QString("%1-%2")
+            .arg(ui->dateEdit_JieSuanMonth->date().year())
+            .arg(ui->dateEdit_JieSuanMonth->date().month());
+
+    QString strSql = QString("yearMonth = '%1'").arg(strMonthYear) ;
 
     model->setFilter(strSql);
 
@@ -63,34 +65,71 @@ void DlgJieSuan::on_PB_jieSuan_clicked()
 bool DlgJieSuan::jieSuanMonth(int year, int month)
 {
     QString strLastMonthDate, strThisMonthDate ;
-    strThisMonthDate = QString("%1-%2-25").arg(year).arg(month) ;
+    QString strLastMontYear ,strThisMonthYear ;
 
+    strThisMonthDate = QString("%1-%2-25").arg(year).arg(month) ;
+    strThisMonthYear = QString("%1-%2").arg(year).arg(month)  ;
     if (1 == month) {   //一月份，获得上一个年的12月份
         strLastMonthDate = QString("%1-%2-25").arg(year-1).arg(12) ;
+        strLastMontYear = QString("%1-%2").arg(year-1).arg(12) ;
     }
     else {
         strLastMonthDate = QString("%1-%2-25").arg(year).arg(month-1) ;
+        strLastMontYear = QString("%1-%2").arg(year).arg(month-1)  ;
     }
 
+
     // 统计出结果
-    QString strQuery = QString("SELECT carid, SUM(hoursofdays)  \
+    QString strQueryTJ = QString("SELECT carid, SUM(hoursofdays)  \
         FROM tb_carswork                \
         WHERE date > '%1' and date <= '%2' GROUP BY carid")
         .arg(strLastMonthDate).arg(strThisMonthDate) ;
 
-    QSqlQuery  query ;
-    query.exec(strQuery) ;
-    while (query.next()) {
+    QSqlQuery  queryTJ ;
+    queryTJ.exec(strQueryTJ) ;
+    while (queryTJ.next()) {
+        //上个月 hoursofBOM + 本月hoursofMonth = 本月hoursofBOM
+
+        //上个月
+        double lastMonthHoursofBOM = 0 ;
+        QString strlastMonthYear =  QString("SELECT hoursofBOM FROM tb_JieSuan WHERE carid='%1' and yearMonth='%2'")
+        .arg(queryTJ.value(0).toUInt()) //carid
+        .arg(strLastMontYear);
+        QSqlQuery  lastYMQuery  ;
+        lastYMQuery.exec(strlastMonthYear)  ;
+        if(lastYMQuery.next()) {
+            lastMonthHoursofBOM = queryTJ.value(0).toDouble() ;
+        }
 
 
-
-
-
+        //2 检查是否存在
+        QString strInsertUdate ;
+        QString queryTJCheck =  QString("SELECT hoursofBOM FROM tb_JieSuan WHERE carid='%1' and yearMonth='%2'")
+                .arg(queryTJ.value(0).toUInt()) //carid
+                .arg(strThisMonthYear);
+        QSqlQuery  tjCheck;
+        tjCheck.exec(queryTJCheck)  ;
+        if(tjCheck.next()) {   //存在
+            strInsertUdate = QString("UPDATE tb_JieSuan hoursofMonth=%1 ,hoursofBOM=%2 \
+                    WHERE carid='%3' and yearMonth='%4'")
+                            .arg(queryTJ.value(1).toDouble())
+                            .arg(queryTJ.value(1).toDouble()+ lastMonthHoursofBOM)
+                            .arg(queryTJ.value(0).toUInt())
+                            .arg(strThisMonthYear);
+        }
+        else {   //不存在
+            strInsertUdate = QString("INSER INTO tb_JieSuan (yearMonth,carid,hoursofMonth,hoursofBOM) VALUES ('%1',%2,%3,%4)")
+                            .arg(strThisMonthYear)
+                            .arg(queryTJ.value(0).toUInt())
+                            .arg(queryTJ.value(1).toDouble())
+                            .arg(queryTJ.value(1).toDouble()+ lastMonthHoursofBOM);
+        }
+        QSqlQuery  queryInsertUpdate ;
+        auto bInsert = queryInsertUpdate.exec(strInsertUdate) ;
+        qDebug() << bInsert << "**" << strInsertUdate ;
     }
 
-  //  QString strInsert = QString("INSERT INTO tb_JieSuan (yearMonth,carid,hoursofMonth) VALUES (1,13,3)  \
-  //                  ON DUPLICATE KEY UPDATE hoursofMonth=hoursofMonth+1") ;
+    return true ;
 
-    QString strInsert = QString("REPLACE INTO tb_JieSuan (yearMonth,carid,hoursofMonth) VALUES (1,13,3)");
-    query.exec(strInsert) ;
+    //"REPLACE INTO tb_JieSuan (yearMonth,carid,hoursofMonth) VALUES ('%1',%2,%3)
 }
