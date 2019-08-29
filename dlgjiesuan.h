@@ -18,6 +18,8 @@ public:
 
     bool jieSuanMonth(int year, int month) ;
 
+    void reloadByMonth();
+    
 private slots:
     void on_PB_jieSuan_clicked();
 
