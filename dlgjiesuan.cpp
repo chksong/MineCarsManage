@@ -118,7 +118,7 @@ bool DlgJieSuan::jieSuanMonth(int year, int month)
                             .arg(strThisMonthYear);
         }
         else {   //不存在
-            strInsertUdate = QString("INSER INTO tb_JieSuan (yearMonth,carid,hoursofMonth,hoursofBOM) VALUES ('%1',%2,%3,%4)")
+            strInsertUdate = QString("INSERT INTO tb_JieSuan (yearMonth,carid,hoursofMonth,hoursofBOM) VALUES ('%1',%2,%3,%4)")
                             .arg(strThisMonthYear)
                             .arg(queryTJ.value(0).toUInt())
                             .arg(queryTJ.value(1).toDouble())
