@@ -96,6 +96,26 @@ void MainWindow::getCarNameTypeByID(quint32 carID, QString &carType, QString &ca
     }
 }
 
+
+
+// 获得上个月一起的工时数
+void getHoursLastMonthByID(quint32 carID, QDate curDate, QString& strHoursALL)
+{
+    int year = curDate.year() ;
+    int month = curDate.month() ;
+    QString strLastMontYear ;
+    if (1 == month) {   //一月份，获得上一个年的12月份
+        strLastMontYear = QString("%1-%2").arg(year-1).arg(12) ;
+    }
+    else {
+        strLastMontYear = QString("%1-%2").arg(year).arg(month-1)  ;
+    }
+
+
+
+
+}
+
 //加载数据
 void MainWindow::reloadTableData()
 {
@@ -127,6 +147,9 @@ void MainWindow::reloadTableData()
         QString strCarName ,strCarType ;
         quint32  carid = query.value(COL_CARID).toUInt()  ;
         getCarNameTypeByID(carid,strCarType ,strCarName)  ;
+
+        QString strHourByLastMonth  ;
+        getHoursLastMonthByID(carid,ui->dateEdit_search->date(), strHourByLastMonth) ;
 
         ui->tableWidget->setItem(row_index,0, new QTableWidgetItem(strCarName)) ;
         ui->tableWidget->setItem(row_index,1, new QTableWidgetItem(strCarType)) ;

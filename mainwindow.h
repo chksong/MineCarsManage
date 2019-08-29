@@ -30,7 +30,11 @@ public:
     void initTable() ;
     void initHeadView(QTableWidget *pTableView)  ;
     void reloadTableData();
-    void getCarNameTypeByID(quint32 carID ,QString& carType ,QString& carName)  ;
+
+	void getCarNameTypeByID(quint32 carID, QString& carType, QString& carName);
+	
+	// 获得上个月一起的工时数
+	void getHoureByID(quint32 carID, QString& carType, QString& carName);
 public slots:
     void carsClassManage(bool) ;
     void addOneDayWork(bool)  ;
