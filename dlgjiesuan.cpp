@@ -5,6 +5,17 @@
 #include <QSqlRelationalTableModel>
 #include <QSqlQuery>
 
+void DlgJieSuan::reloadByMonth()
+{
+    QString strMonthYear = QString("%1-%2")
+            .arg(ui->dateEdit_JieSuanMonth->date().year())
+            .arg(ui->dateEdit_JieSuanMonth->date().month());
+
+    QString strSql = QString("yearMonth = '%1'").arg(strMonthYear) ;
+
+    model->setFilter(strSql);
+}
+
 DlgJieSuan::DlgJieSuan(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::DlgJieSuan)
@@ -22,19 +33,12 @@ DlgJieSuan::DlgJieSuan(QWidget *parent) :
     model->setHeaderData(1, Qt::Horizontal, QStringLiteral("车号"));
     model->setRelation(1,QSqlRelation("tb_cars","id","name")) ;
 
-    model->setHeaderData(2, Qt::Horizontal, QStringLiteral("年"));
-    model->setHeaderData(3, Qt::Horizontal, QStringLiteral("月"));
-    model->setHeaderData(4, Qt::Horizontal, QStringLiteral("本月工时数"));
-    model->setHeaderData(4, Qt::Horizontal, QStringLiteral("月初工时数"));
+    model->setHeaderData(2, Qt::Horizontal, QStringLiteral("年-月"));
+    model->setHeaderData(3, Qt::Horizontal, QStringLiteral("本月工时数"));
+    model->setHeaderData(4, Qt::Horizontal, QStringLiteral("本月累计工时数"));
 
 
-    QString strMonthYear = QString("%1-%2")
-            .arg(ui->dateEdit_JieSuanMonth->date().year())
-            .arg(ui->dateEdit_JieSuanMonth->date().month());
-
-    QString strSql = QString("yearMonth = '%1'").arg(strMonthYear) ;
-
-    model->setFilter(strSql);
+    reloadByMonth();
 
     ui->tableView->setModel(model);
     ui->tableView->setEditTriggers(QAbstractItemView::NoEditTriggers); //使其不可编辑
@@ -111,7 +115,7 @@ bool DlgJieSuan::jieSuanMonth(int year, int month)
         QSqlQuery  tjCheck;
         tjCheck.exec(queryTJCheck)  ;
         if(tjCheck.next()) {   //存在
-            strInsertUdate = QString("UPDATE tb_JieSuan hoursofMonth=%1 ,hoursofBOM=%2 \
+            strInsertUdate = QString("UPDATE tb_JieSuan SET hoursofMonth=%1 ,hoursofBOM=%2 \
                     WHERE carid='%3' and yearMonth='%4'")
                             .arg(queryTJ.value(1).toDouble())
                             .arg(queryTJ.value(1).toDouble()+ lastMonthHoursofBOM)
@@ -135,6 +139,6 @@ bool DlgJieSuan::jieSuanMonth(int year, int month)
 
     model->database().commit() ;
 
-    model->select(); //选取整个表的所有行
+    reloadByMonth() ;
     return true ;
 }
