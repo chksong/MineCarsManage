@@ -78,6 +78,7 @@ bool DlgJieSuan::jieSuanMonth(int year, int month)
         strLastMontYear = QString("%1-%2").arg(year).arg(month-1)  ;
     }
 
+   model->database().transaction(); //开始事务操作
 
     // 统计出结果
     QString strQueryTJ = QString("SELECT carid, SUM(hoursofdays)  \
@@ -116,6 +117,7 @@ bool DlgJieSuan::jieSuanMonth(int year, int month)
                             .arg(queryTJ.value(1).toDouble()+ lastMonthHoursofBOM)
                             .arg(queryTJ.value(0).toUInt())
                             .arg(strThisMonthYear);
+
         }
         else {   //不存在
             strInsertUdate = QString("INSERT INTO tb_JieSuan (yearMonth,carid,hoursofMonth,hoursofBOM) VALUES ('%1',%2,%3,%4)")
@@ -124,12 +126,15 @@ bool DlgJieSuan::jieSuanMonth(int year, int month)
                             .arg(queryTJ.value(1).toDouble())
                             .arg(queryTJ.value(1).toDouble()+ lastMonthHoursofBOM);
         }
+
         QSqlQuery  queryInsertUpdate ;
-        auto bInsert = queryInsertUpdate.exec(strInsertUdate) ;
-        qDebug() << bInsert << "**" << strInsertUdate ;
+        auto bInsertUpdate = queryInsertUpdate.exec(strInsertUdate) ;
+        qDebug() << bInsertUpdate << "**" << strInsertUdate ;
     }
 
-    return true ;
 
-    //"REPLACE INTO tb_JieSuan (yearMonth,carid,hoursofMonth) VALUES ('%1',%2,%3)
+    model->database().commit() ;
+
+    model->select(); //选取整个表的所有行
+    return true ;
 }
