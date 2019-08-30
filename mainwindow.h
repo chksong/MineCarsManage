@@ -34,7 +34,7 @@ public:
 	void getCarNameTypeByID(quint32 carID, QString& carType, QString& carName);
 	
 	// 获得上个月一起的工时数
-	void getHoureByID(quint32 carID, QString& carType, QString& carName);
+	void getHoursLastMonthByID(quint32 carID, QDate curDate, QString& strHoursALL);
 public slots:
     void carsClassManage(bool) ;
     void addOneDayWork(bool)  ;

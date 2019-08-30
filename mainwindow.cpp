@@ -99,7 +99,7 @@ void MainWindow::getCarNameTypeByID(quint32 carID, QString &carType, QString &ca
 
 
 // 获得上个月一起的工时数
-void getHoursLastMonthByID(quint32 carID, QDate curDate, QString& strHoursALL)
+void MainWindow::getHoursLastMonthByID(quint32 carID, QDate curDate, QString& strHoursALL)
 {
     int year = curDate.year() ;
     int month = curDate.month() ;
