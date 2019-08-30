@@ -100,10 +100,10 @@ bool DlgJieSuan::jieSuanMonth(int year, int month)
         QString strlastMonthYear =  QString("SELECT hoursofBOM FROM tb_JieSuan WHERE carid='%1' and yearMonth='%2'")
         .arg(queryTJ.value(0).toUInt()) //carid
         .arg(strLastMontYear);
-        QSqlQuery  lastYMQuery  ;
+        QSqlQuery  lastYMQuery  ;  //上月的
         lastYMQuery.exec(strlastMonthYear)  ;
         if(lastYMQuery.next()) {
-            lastMonthHoursofBOM = queryTJ.value(0).toDouble() ;
+			lastMonthHoursofBOM = lastYMQuery.value(0).toDouble();   //截止上个月的统计数
         }
 
 
