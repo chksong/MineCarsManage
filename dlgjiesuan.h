@@ -16,7 +16,7 @@ public:
     explicit DlgJieSuan(QWidget *parent = nullptr);
     ~DlgJieSuan();
 
-    bool jieSuanMonth(int year, int month) ;
+    bool jieSuanMonth(int year, int month, int day) ;
 
     void reloadByMonth();
     

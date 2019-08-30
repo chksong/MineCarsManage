@@ -56,6 +56,7 @@ AddDayWorkDialog::AddDayWorkDialog(QWidget *parent,qlonglong work_id):
     ui->setupUi(this);
     setAttribute (Qt::WA_DeleteOnClose);
 
+	ui->dateEdit_add->setCalendarPopup(true);
 
     if ( edit_tb_carwork_id < 0) {  // 正常添加模式
         model = new QSqlTableModel(this);

@@ -103,15 +103,30 @@ void MainWindow::getHoursLastMonthByID(quint32 carID, QDate curDate, QString& st
 {
     int year = curDate.year() ;
     int month = curDate.month() ;
+	int day = curDate.day();
     QString strLastMontYear ;
-    if (1 == month) {   //一月份，获得上一个年的12月份
-        strLastMontYear = QString("%1-%2").arg(year-1).arg(12) ;
-    }
-    else {
-        strLastMontYear = QString("%1-%2").arg(year).arg(month-1)  ;
-    }
 
+	if (day >= 26)  //大于26 计入下个月计算
+	{
+		strLastMontYear = QString("%1-%2").arg(year).arg(month);
+	}
+	else {
+		if (1 == month) {   //一月份，获得上一个年的12月份
+			strLastMontYear = QString("%1-%2").arg(year - 1).arg(12);
+		}
+		else {
+			strLastMontYear = QString("%1-%2").arg(year).arg(month - 1);
+		}
+	}
 
+	QString strlastMonthYear = QString("SELECT hoursofBOM FROM tb_JieSuan WHERE carid='%1' and yearMonth='%2'")
+		.arg(carID ) //carid
+		.arg(strLastMontYear);
+	QSqlQuery  lastYMQuery;  //上月的
+	lastYMQuery.exec(strlastMonthYear);
+	if (lastYMQuery.next()) {
+		strHoursALL = lastYMQuery.value(0).toString();
+	}
 
 
 }
@@ -153,6 +168,7 @@ void MainWindow::reloadTableData()
 
         ui->tableWidget->setItem(row_index,0, new QTableWidgetItem(strCarName)) ;
         ui->tableWidget->setItem(row_index,1, new QTableWidgetItem(strCarType)) ;
+		ui->tableWidget->setItem(row_index,2, new QTableWidgetItem(strHourByLastMonth));
         //一共显示20列
         for (int col_index= 0; col_index <=Col_Nums; col_index++)
         {
@@ -359,10 +375,9 @@ void MainWindow::addOneDayWork(bool var)
 
     dlgAddDayWorkDlg = new AddDayWorkDialog () ;
     if(QDialog::Accepted  == dlgAddDayWorkDlg->exec() )
-    {
-
+   // {
         reloadTableData();
-    }
+  //  }
 }
 
 
@@ -378,7 +393,6 @@ void MainWindow::MonthJieSuan(bool  tag)
     if(QDialog::Accepted  == dlgJieSuan->exec() )
     {
     }
-
 }
 
 

@@ -7,11 +7,26 @@
 
 void DlgJieSuan::reloadByMonth()
 {
-    QString strMonthYear = QString("%1-%2")
-            .arg(ui->dateEdit_JieSuanMonth->date().year())
-            .arg(ui->dateEdit_JieSuanMonth->date().month());
+	int day = ui->dateEdit_JieSuanMonth->date().day();
+	int year = ui->dateEdit_JieSuanMonth->date().year();
+	int month = ui->dateEdit_JieSuanMonth->date().month();
 
-    QString strSql = QString("yearMonth = '%1'").arg(strMonthYear) ;
+	QString strThisMonthYear;
+	if (day >= 26)  //大于26 计入下个月计算
+	{
+		if (12 == month) {   //一月份，获得下一个年的1月份
+			strThisMonthYear = QString("%1-%2").arg(year + 1).arg(1);
+		}
+		else {  //累计到下个月
+			strThisMonthYear = QString("%1-%2").arg(year).arg(month + 1);
+		}
+	}
+	else {  // 当前月
+		strThisMonthYear = QString("%1-%2").arg(year).arg(month);
+	}
+
+
+    QString strSql = QString("yearMonth = '%1'").arg(strThisMonthYear) ;
 
     model->setFilter(strSql);
 }
@@ -60,27 +75,51 @@ void DlgJieSuan::on_PB_jieSuan_clicked()
  //   qDebug() << strdate  ;
     auto  date = ui->dateEdit_JieSuanMonth->date() ;
 
-    jieSuanMonth(date.year() ,date.month())  ;
-
+    jieSuanMonth(date.year() ,date.month(),date.day())  ;
+	reloadByMonth();
 }
 
 
 
-bool DlgJieSuan::jieSuanMonth(int year, int month)
+bool DlgJieSuan::jieSuanMonth(int year, int month ,int day)
 {
     QString strLastMonthDate, strThisMonthDate ;
     QString strLastMontYear ,strThisMonthYear ;
 
-    strThisMonthDate = QString("%1-%2-25").arg(year).arg(month) ;
-    strThisMonthYear = QString("%1-%2").arg(year).arg(month)  ;
-    if (1 == month) {   //一月份，获得上一个年的12月份
-        strLastMonthDate = QString("%1-%2-25").arg(year-1).arg(12) ;
-        strLastMontYear = QString("%1-%2").arg(year-1).arg(12) ;
-    }
-    else {
-        strLastMonthDate = QString("%1-%2-25").arg(year).arg(month-1) ;
-        strLastMontYear = QString("%1-%2").arg(year).arg(month-1)  ;
-    }
+
+
+	if (day >= 26)  //大于26 计入下个月计算
+	{
+		if (12 == month) {   //一月份，获得下一个年的1月份
+			strThisMonthDate = QString("%1-%2-25").arg(year+1).arg(1);   // 截止下月日期
+			strThisMonthYear = QString("%1-%2").arg(year+1).arg(1);
+
+			strLastMonthDate = QString("%1-%2-25").arg(year).arg(12);
+			strLastMontYear = QString("%1-%2").arg(year).arg(12);
+		}
+		else {  //累计到下个月
+			strThisMonthDate = QString("%1-%2-25").arg(year).arg(month + 1);   // 截止下月日期
+			strThisMonthYear = QString("%1-%2").arg(year).arg(month + 1);
+
+			strLastMonthDate = QString("%1-%2-25").arg(year).arg(month);
+			strLastMontYear = QString("%1-%2").arg(year).arg(month);
+		}
+	}
+	else {  // 当前月
+
+		strThisMonthDate = QString("%1-%2-25").arg(year).arg(month);   // 截止本月日期
+		strThisMonthYear = QString("%1-%2").arg(year).arg(month);
+
+		if (1 == month) {   //一月份，获得上一个年的12月份
+			strLastMonthDate = QString("%1-%2-25").arg(year - 1).arg(12);
+			strLastMontYear = QString("%1-%2").arg(year - 1).arg(12);
+		}
+		else {
+			strLastMonthDate = QString("%1-%2-25").arg(year).arg(month - 1);
+			strLastMontYear = QString("%1-%2").arg(year).arg(month - 1);
+		}
+	}
+  
 
    model->database().transaction(); //开始事务操作
 
@@ -103,7 +142,7 @@ bool DlgJieSuan::jieSuanMonth(int year, int month)
         QSqlQuery  lastYMQuery  ;  //上月的
         lastYMQuery.exec(strlastMonthYear)  ;
         if(lastYMQuery.next()) {
-			lastMonthHoursofBOM = lastYMQuery.value(0).toDouble();   //截止上个月的统计数
+			lastMonthHoursofBOM = lastYMQuery.value(0).toDouble();   //
         }
 
 
@@ -138,7 +177,5 @@ bool DlgJieSuan::jieSuanMonth(int year, int month)
 
 
     model->database().commit() ;
-
-    reloadByMonth() ;
     return true ;
 }
