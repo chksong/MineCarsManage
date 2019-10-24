@@ -25,6 +25,8 @@
 
 #include "cominc.h"
 
+#include  "timediffwatchhelper.h"
+
 ////////////////////////////////////////////////////////////////
 /// \brief  将输出到文件中
 /// https://stackoverflow.com/questions/4954140/how-to-redirect-qdebug-qwarning-qcritical-etc-output
@@ -65,6 +67,8 @@ void customMessageOutput(QtMsgType type, const QMessageLogContext &context, cons
 //  初始化 数据库
 bool initMySQLDB()
 {
+    std::string strHint("initMySQLDB")  ;
+    TimeDiffWatchHelper m(strHint)  ;
     MysqlDBHelp  help ;
     help.testMysqlAvailabe()  ;
     help.initTables()  ;
@@ -79,10 +83,13 @@ int main(int argc, char *argv[])
     QString strFileAppLog = QCoreApplication::applicationDirPath();
     strFileAppLog.append("/MineCarsManageAPP.log");
 
+    {
+         TimeDiffWatchHelper m{std::string("initLog1") , std::string("initLog2") ,std::string("initLog2") }  ;
+        //1 初始化日志
+         plog::init(plog::debug,strFileAppLog.toStdString().c_str() );
+         LOGI << " ******* init MineCarsManage log file  *****";
+    }
 
-    //1 初始化日志
-     plog::init(plog::debug,strFileAppLog.toStdString().c_str() );
-     LOGI << " ******* init MineCarsManage log file  *****";
 
 
     a.processEvents();

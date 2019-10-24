@@ -9,6 +9,7 @@ QT       += sql  xml
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
+
 TARGET = MineCarsManage
 TEMPLATE = app
 
@@ -24,6 +25,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 CONFIG += c++11
+CONFIG += console
 
 
 
@@ -43,7 +45,8 @@ SOURCES += \
         mainwindow.cpp \
         mysqldbhelp.cpp \
         peopledialog.cpp \
-        qreadxmlcfg.cpp
+        qreadxmlcfg.cpp \
+        timediffwatchhelper.cpp
 
 HEADERS += \
         HTableview/HHeaderItemDelegate.h \
@@ -68,7 +71,8 @@ HEADERS += \
         plog/Severity.h \
         plog/Util.h \
         plog/WinApi.h \
-        qreadxmlcfg.h
+        qreadxmlcfg.h \
+        timediffwatchhelper.h
 
 FORMS += \
         HTableview/TcTableWidget.ui \
